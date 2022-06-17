@@ -1,0 +1,26 @@
+{
+  "name": "graphing-calculator",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lil-gui": "^0.16.1",
+    "mathjs": "^10.6.1",
+    "three": "^0.141.0",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@types/three": "^0.141.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "sass": "^1.52.3",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vite-plugin-glsl": "^0.1.2",
+    "vue-tsc": "^0.34.7"
+  }
+}
