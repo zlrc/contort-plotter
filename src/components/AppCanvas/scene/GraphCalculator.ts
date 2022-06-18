@@ -26,10 +26,10 @@ export class GraphCalculator {
     scene    : Scene;
 
     /** The coordinate grid plane */
-    grid: CoordinateGrid;
+    grid!: CoordinateGrid;
 
     /** 3D mesh of the function being graphed */
-    mesh: GraphMesh;
+    mesh!: GraphMesh;
     
     /** Default GUI settings */
     guiState = {

@@ -18,7 +18,7 @@ import { YELLOW as COLORS } from "./palettes";
  */
 export class GraphMesh extends Object3D {
     /** The underlying mesh object */
-    mesh: Mesh;
+    mesh!: Mesh | null;
 
     /** Minimum x and y coordinate to draw the mesh from */
     minCoord: number;
@@ -30,18 +30,18 @@ export class GraphMesh extends Object3D {
     numFaces: number;
 
     /** List of points that compose the mesh */
-    points: Vector3[];
+    points!: Vector3[];
 
     /**
      * Face index list, each element points to an index in the points array.
      * Every 4 consecutive elements represents a quad face.
      */
-    faces: number[];
+    faces!: number[];
 
     /**
      * The object's wireframe mesh.
      */
-    #wireframe: LineSegments;
+    #wireframe!: LineSegments | null;
 
     /**
      * A compiled math.js function for the z-coordinate of each point along the mesh.
