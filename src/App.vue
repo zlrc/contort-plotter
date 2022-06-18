@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { AppCanvas } from './components/AppCanvas';
-import { GraphCalculator } from './components/AppCanvas/scene';
+import { AppCanvas } from '@/components/AppCanvas';
+import { GraphCalculator } from '@/components/AppCanvas/scene';
 
 const calculator = ref<GraphCalculator>();
 
