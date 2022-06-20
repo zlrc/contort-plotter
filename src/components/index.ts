@@ -1,0 +1,1 @@
+export {default as AppCanvas} from './AppCanvas.vue';

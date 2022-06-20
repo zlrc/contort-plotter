@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { GraphCalculator } from './scene';
+import { GraphCalculator } from '@/scene';
 
 const emit = defineEmits<{ 
     (e: 'ready', value: GraphCalculator) : void 
