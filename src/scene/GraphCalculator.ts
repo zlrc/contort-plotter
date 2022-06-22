@@ -105,6 +105,18 @@ export class GraphCalculator {
     }
 
     /**
+     * Sets the expression to graph the mesh along.
+     * @param expr graph expression, as a function of x, y, and t
+     */
+    setZEquals(expr : string) {
+        const t = this.guiState.t;
+        const wireframe = this.guiState.wireframe;
+        this.scene.remove(this.mesh);
+        this.mesh = new GraphMesh(math.compile(expr), this.guiState.numFaces, undefined, undefined, t, wireframe);
+        this.scene.add(this.mesh);
+    }
+
+    /**
      * Initializes lil-gui.
      */
     initGUI() {
@@ -134,13 +146,7 @@ export class GraphCalculator {
             }
         );
         gui.add(this.guiState, "z").name("z = ").onChange(
-            (expr: string) => {
-                const t = this.guiState.t;
-                const wireframe = this.guiState.wireframe;
-                this.scene.remove(this.mesh);
-                this.mesh = new GraphMesh(math.compile(expr), this.guiState.numFaces, undefined, undefined, t, wireframe);
-                this.scene.add(this.mesh);
-            }
+            this.setZEquals.bind(this)
         );
         gui.add(this.guiState, "t", 0.0, 6.28, 0.01).name("t = ").onChange(
             (value: number) => {
