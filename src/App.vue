@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { AppCanvas } from '@/components';
+import { AppCanvas, AppGUI } from '@/components';
 import { GraphCalculator } from '@/scene';
 
 const calculator = ref<GraphCalculator>();
@@ -14,6 +14,7 @@ function onCanvasReady(calc : GraphCalculator) {
 
 <template>
   <AppCanvas @ready="onCanvasReady"/>
+  <AppGUI v-if="calculator" :scene="calculator"/>
 </template>
 
 <!---->
@@ -53,5 +54,14 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #root, #__next {
   isolation: isolate;
+}
+
+// Custom styles
+#app {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 100%;
+  max-width: 100%;
 }
 </style>

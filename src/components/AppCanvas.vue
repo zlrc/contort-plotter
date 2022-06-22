@@ -6,25 +6,30 @@ const emit = defineEmits<{
     (e: 'ready', value: GraphCalculator) : void 
 }>();
 
+const ro = new ResizeObserver(onResize);
 const containerRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
 
+let container: HTMLElement;
 let canvas: HTMLCanvasElement;
 let calculator: GraphCalculator;
 
 onMounted(() => {
-    window.addEventListener("resize", onWindowResize, false);
-
     canvas = canvasRef.value as HTMLCanvasElement;
+    container = containerRef.value as HTMLElement;
     calculator = new GraphCalculator(canvas);
 
-    onWindowResize();
+    window.addEventListener("resize", onResize, false);
+    ro.observe(container);
+
+    onResize();
     draw();
     emit('ready', calculator);
 });
 
 onUnmounted(() => {
-    window.removeEventListener("resize", onWindowResize, false);
+    window.removeEventListener("resize", onResize, false);
+    ro.unobserve(container);
 });
 
 /** Draw loop for the canvas. */
@@ -34,11 +39,9 @@ function draw() {
 }
 
 /** Correctly resizes the canvas to fill its container. */
-function onWindowResize() {
-    const container: HTMLElement | undefined = containerRef.value;
-
+function onResize() {
     // End the function if container is undefined
-    if (!container)
+    if (!container || !canvas)
         return;
 
     // Resize the canvas
@@ -46,7 +49,7 @@ function onWindowResize() {
     canvas.height = container.clientHeight;
 
     // Resize the scene render
-    calculator.resize(container.clientWidth, container.clientHeight);
+    calculator.resize(canvas.width, canvas.height);
 }
 </script>
 
@@ -62,12 +65,12 @@ function onWindowResize() {
 
 <style lang="scss">
 #canvas-container {
+    flex: 1 0 auto;
     width: 100%;
-    height: 100%;
 }
 
 #main-canvas {
+    position: absolute;
     width: 100%;
-    height: 100%;
 }
 </style>

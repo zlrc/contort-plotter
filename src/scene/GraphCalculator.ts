@@ -75,7 +75,7 @@ export class GraphCalculator {
         this.scene.add(this.camera);
 
         // GUI
-        this.initGUI();
+        //this.initGUI();
     }
 
     /**
