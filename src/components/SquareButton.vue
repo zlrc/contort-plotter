@@ -16,7 +16,7 @@ const color = props.color ? props.color : "white";
 
 <style scoped lang="scss">
     .button {
-        height: 100%;
+        height: inherit;
         aspect-ratio: 1/1;
         background: v-bind(color);
         border: solid 0.25rem black;
