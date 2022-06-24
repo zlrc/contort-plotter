@@ -50,6 +50,7 @@ function onResize() {
 
     // Resize the scene render
     calculator.resize(canvas.width, canvas.height);
+    calculator.render();
 }
 </script>
 
