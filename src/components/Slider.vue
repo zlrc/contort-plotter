@@ -45,10 +45,14 @@ References:
         border-color: transparent;
         color: transparent;
     }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
 }
 
 /* Custom Styles */
-$border-width-track: 0;
+$border-width-track: 0rem;
 $border-radius: 8rem;
 
 $color-thumb: v-bind(thumbColor);
@@ -56,7 +60,13 @@ $color-track: v-bind(trackColor);
 
 $height-track: 0.8rem;
 $height-thumb: 4rem;
+$height-thumb-focus: $height-thumb + 0.75rem;
 $width-thumb: 1.4rem;
+$width-thumb-focus: $width-thumb + 0.75rem;
+
+@mixin webkit-thumb-offset($track-border-width, $track-height, $thumb-height) {
+    margin-top: calc((0rem - $track-border-width * 2 + $track-height)/2 - $thumb-height/2);
+}
 
 @mixin thumb {
     height: $height-thumb;
@@ -74,8 +84,8 @@ $width-thumb: 1.4rem;
 }
 
 @mixin thumb-focus {
-    height: $height-thumb + 0.75rem;
-    width: $width-thumb + 0.75rem;
+    height: $height-thumb-focus;
+    width: $width-thumb-focus;
 }
 
 @mixin track {
@@ -113,7 +123,10 @@ $width-thumb: 1.4rem;
     // Thumb
     &::-webkit-slider-thumb {
         @include thumb;
-        margin-top: ((-$border-width-track * 2 + $height-track)/2 - $height-thumb/2);
+        @include webkit-thumb-offset($border-width-track, $height-track, $height-thumb);
+        &:hover {
+            @include webkit-thumb-offset($border-width-track, $height-track, $height-thumb-focus);
+        }
     }
 
     &::-moz-range-thumb {
@@ -136,7 +149,8 @@ $width-thumb: 1.4rem;
     // Focus
     &:focus {
         &::-webkit-slider-thumb{ 
-            @include thumb-focus; 
+            @include thumb-focus;
+            @include webkit-thumb-offset($border-width-track, $height-track, $height-thumb-focus);
         }
 
         &::-moz-range-thumb { 
