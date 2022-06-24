@@ -11,8 +11,10 @@
     - [ ] Parabola
     - [ ] Wave
     - [ ] Step function
+    - [ ] Custom expression
 - [ ] Fixed Orthographic View that is enabled by default
 
 ## Stretch Goals
 - [ ] Support for Polar Coordinates
 - [ ] Support for Parametric Functions
+- [ ] Alternative mesh outline method
