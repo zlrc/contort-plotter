@@ -2,8 +2,10 @@
 const props = defineProps<{
     fillColor?: string
     outlineColor?: string
+    size?: string;
 }>();
 
+const size = props.size ? props.size : "1.75rem";
 const color = props.fillColor ? props.fillColor : "white";
 const outline = props.outlineColor ? props.outlineColor : "black";
 </script>
@@ -18,9 +20,12 @@ const outline = props.outlineColor ? props.outlineColor : "black";
 
 <style scoped lang="scss">
     .button {
-        height: inherit;
+        height: v-bind(size);
+        width: v-bind(size);
+
         min-height: 1.75rem;
-        aspect-ratio: 1/1;
+        min-width: 1.75rem;
+        
         background: v-bind(color);
         border: solid 0.25rem v-bind(outline);
     }
