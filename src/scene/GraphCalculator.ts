@@ -42,19 +42,21 @@ export class GraphCalculator {
         gridDivisions: 1,       // number of times to divide the grid planes
         wireframe: true,        // whether the mesh wireframe is visible or not
         mesh: true,             // whether the solid part of the mesh is visible or not
-        numFaces: 36,           // i.e. the polygon count of the graphed mesh
-        z: "pow(x,2)+pow(y,2)", // f(x,y,t) equation for the mesh
+        numFaces: 256,           // i.e. the polygon count of the graphed mesh
+        z: "sin(5x)*cos(5y)/5", // f(x,y,t) equation for the mesh
         t: 0.0                  // time variable
     };
 
     constructor( canvas : HTMLCanvasElement ) {
         const persp = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
+        const ortho = new OrthographicCamera(-canvas.width / 2, canvas.width / 2, canvas.height / 2, -canvas.height / 2, 0.1, 1000.0);
+        ortho.zoom = 100;
         this.canvas = canvas;
         this.scene = new Scene();
-        this.camera = persp;
+        this.camera = ortho;
         this.camera.position.set(0, 0, 5);
         this.controls = new OrbitControls(this.camera, canvas);
-        this.renderer = new WebGLRenderer({ canvas });
+        this.renderer = new WebGLRenderer({ canvas, antialias: true });
         this.start();
     }
 
@@ -76,12 +78,24 @@ export class GraphCalculator {
 
         // GUI
         //this.initGUI();
+
+        // Controls
+        this.controls.enablePan = false;
+        this.controls.enableDamping = true;
+        this.controls.minPolarAngle = 0.8;
+        this.controls.maxPolarAngle = 2.4;
+        this.controls.dampingFactor = 0.07;
+        this.controls.autoRotate = true;
+        this.controls.autoRotateSpeed *= -0.5;
+        //this.controls.minZoom = 50;
+        //this.controls.rotateSpeed = 0.5;
     }
 
     /**
      * Renders the GraphCalculator scene.
      */
     render() {
+        this.controls.update();
         this.renderer.render( this.scene, this.camera );
     }
 
