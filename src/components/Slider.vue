@@ -1,11 +1,28 @@
 <script setup lang="ts">
 const props = defineProps<{
+    /** @default 1 */
+    min?: number
+
+    /** @default 100 */
+    max?: number
+
+    /** @default 50 */
+    value?: number
+
+    /** @default 1 */
+    step?: number
+
+    /** @default white */
     trackColor?: string
+
+    /** @default black */
     thumbColor?: string
 }>();
 
-const trackColor = props.trackColor ? props.trackColor : "white";
-const thumbColor = props.thumbColor ? props.thumbColor : "black";
+const {
+    min = 1, max = 100, value = 50, step = 1,
+    trackColor = "white", thumbColor = "black",
+} = props;
 </script>
 
 <!---->
@@ -13,7 +30,7 @@ const thumbColor = props.thumbColor ? props.thumbColor : "black";
 <template>
     <div id="Slider__container">
         <div class="Slider__tick start"/>
-        <input type="range" min="1" max="100" value="50" />
+        <input type="range" :min="min" :max="max" :value="value" :step="step" />
         <div class="Slider__tick end"/>
     </div>
 </template>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{
+    /** @default white */
     fillColor?: string
+    /** @default black */
     outlineColor?: string
 }>();
 
