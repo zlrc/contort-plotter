@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{
+    /** Passed through v-model */
+    modelValue?: number
+
     /** @default 1 */
     min?: number
 
     /** @default 100 */
     max?: number
-
-    /** @default 50 */
-    value?: number
 
     /** @default 1 */
     step?: number
@@ -19,8 +19,12 @@ const props = defineProps<{
     thumbColor?: string
 }>();
 
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: number): void
+}>();
+
 const {
-    min = 1, max = 100, value = 50, step = 1,
+    min = 1, max = 100, step = 1,
     trackColor = "white", thumbColor = "black",
 } = props;
 </script>
@@ -30,7 +34,11 @@ const {
 <template>
     <div id="Slider__container">
         <div class="Slider__tick start"/>
-        <input type="range" :min="min" :max="max" :value="value" :step="step" />
+        <input type="range" 
+            :min="min" :max="max" 
+            :value="modelValue" :step="step"
+            @input="emit('update:modelValue', Number(($event.target as HTMLInputElement).value))"
+        />
         <div class="Slider__tick end"/>
     </div>
 </template>
