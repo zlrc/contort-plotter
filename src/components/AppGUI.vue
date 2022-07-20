@@ -87,35 +87,9 @@ function onSliderInput() {
 <!---->
 
 <style lang="scss">
-$palette-yellow: #F5C542;
-$palette-white: #FAF3EB;
-$palette-pink: #EC368D;
-$palette-blue: #4A5899;
-$palette-black: #403F4C;
-$palette-green: #2FA951;
-
 $border-width-global: 0.25rem;
-
-$color-border-global: #000;
-$color-tray-bg: $palette-black;
-$color-menu-button-bg: $palette-yellow;
-
 $height-tray: 5rem;
 $height-toolbox-body: 20rem;
-
-@mixin stripe-background ($base-color, $dark-color: null) {
-    @if ($dark-color == null) {
-        $dark-color: darken($base-color, 30%);
-    }
-    background-image: linear-gradient(
-        135deg, 
-        $base-color 25%, $dark-color 25%, 
-        $dark-color 50%, $base-color 50%, 
-        $base-color 75%, $dark-color 75%, 
-        $dark-color 100%
-    );
-    background-size: 98.99px 98.99px;
-}
 
 #Toolbox__container {
     display: flex;

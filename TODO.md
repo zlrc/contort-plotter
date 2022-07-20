@@ -1,7 +1,7 @@
 ## Goals for Public Release
 - [ ] Refactoring*
     - [ ] Extract individual components from AppGUI.vue into their own separate files*
-    - [ ] Create a global Sass variables file*
+    - [x] Create a global Sass variables file*
 
 - [ ] Working expandable GUI framework
 - [ ] GUI Components
@@ -23,7 +23,7 @@
 - [x] ~~Fixed~~ Orthographic View that is enabled by default
 - [ ] Default camera positioning from the top corner (instead of from the side)
 
-* = Tasks I left off with since last commit 
+* = Tasks I left off with since last time
 
 ## Stretch Goals
 - [ ] Support for Polar Coordinates
