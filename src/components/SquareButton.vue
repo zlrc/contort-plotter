@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SVGIcon } from '@/components';
+
 const props = defineProps<{
     /** @default white */
     fillColor?: string
@@ -6,6 +8,8 @@ const props = defineProps<{
     outlineColor?: string
     /** @default 1.75rem */
     size?: string;
+    /** Name of the SVG icon use */
+    icon?: string;
 }>();
 
 const size = props.size ? props.size : "1.75rem";
@@ -16,7 +20,9 @@ const outline = props.outlineColor ? props.outlineColor : "black";
 <!---->
 
 <template>
-    <button class="button" @contextmenu.prevent=""/>
+    <button class="button" @contextmenu.prevent="">
+        <SVGIcon class="button__icon" v-if="props.icon" :name="props.icon" />
+    </button>
 </template>
 
 <!---->
@@ -31,5 +37,9 @@ const outline = props.outlineColor ? props.outlineColor : "black";
         
         background: v-bind(color);
         border: solid 0.25rem v-bind(outline);
+    }
+
+    .button__icon {
+        pointer-events: none;
     }
 </style>

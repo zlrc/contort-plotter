@@ -25,7 +25,7 @@ function onClick() {
 <!---->
 
 <template>
-    <FlagButton class="modifier-chain__node" :fill-color="fillColor" @click="onClick" />
+    <FlagButton class="modifier-chain__node" :fill-color="fillColor" :icon="props.icon" @click="onClick" />
 </template>
 
 <!---->

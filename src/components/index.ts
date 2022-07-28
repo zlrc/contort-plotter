@@ -6,5 +6,6 @@ export {default as FlagButton} from './FlagButton.vue';
 export {default as ModifierPage} from './ModifierPage.vue';
 export {default as Slider} from './Slider.vue';
 export {default as SquareButton} from './SquareButton.vue';
+export {default as SVGIcon} from './SVGIcon.vue';
 export {default as ToolboxNavButton} from './ToolboxNavButton.vue';
 export {default as ToolboxSection} from './ToolboxSection.vue';
