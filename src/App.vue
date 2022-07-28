@@ -25,6 +25,10 @@ function onCanvasReady(calc : GraphCalculator) {
   display: flex;
   flex-direction: column;
 
+  font-family: $font-stack-global;
+  font-size: $font-size-global;
+  font-weight: bold;
+
   max-height: 100%;
   max-width: 100%;
 }

@@ -1,3 +1,10 @@
+/* Fonts */
+$font-stack-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-stack-global: 'Nunito', $font-stack-system;
+
+/* Font Sizes */
+$font-size-global: 1.225rem;
+
 /* Palette */
 $palette-yellow: #F5C542;
 $palette-white: #FAF3EB;
