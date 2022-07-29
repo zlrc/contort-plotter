@@ -1,23 +1,11 @@
 <script setup lang="ts">
 import { ButtonGrid, ToolboxNavButton, ToolboxSection } from '@/components';
+import { menu } from '@/utils/constants';
 
 const emit = defineEmits<{
     /** Emits when a navigation button is clicked, indicating a modifier being selected */
     (e: 'redirect', pageName: string): void
 }>();
-
-/** Metadata */
-const menu = {
-    "Unnamed Section": [
-        {name: "DummyPage", icon: ""},
-        {name: "Parabola", icon: ""},
-        {name: "Wave", icon: ""},
-        {name: "Step", icon: ""}
-    ],
-    "Advanced": [
-        {name: "CustomExpr", icon: ""}
-    ]
-}
 
 /**
  * Called when a button is clicked.
@@ -31,14 +19,23 @@ function onClick(dest : string) {
 <!---->
 
 <template>
-    <ToolboxSection v-for="(pages, sectionTitle) in menu">
+    <ToolboxSection v-for="(pages, sectionTitle) in menu" :title="sectionTitle">
         <ButtonGrid>
             <ToolboxNavButton class="button-grid__button"
                 v-for="page in pages"
                 :key="page.name"
                 :to="page.name"
+                :icon="page.icon"
                 @click="onClick"
             />
         </ButtonGrid>
     </ToolboxSection>
 </template>
+
+<!---->
+
+<style lang="scss">
+.button-grid__button {
+    border-radius: $border-radius-global;
+}
+</style>
