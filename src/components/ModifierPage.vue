@@ -3,10 +3,9 @@ import {
     inject, 
     onMounted, 
     onUpdated, 
-    Ref, 
-    ref 
+    Ref
 } from 'vue';
-import { ToolboxSection } from '@/components';
+import { RoundButton, ToolboxSection } from '@/components';
 import { GraphCalculator } from '@/scene';
 
 /** Type definition for modifier chain nodes */
@@ -44,7 +43,6 @@ let { id = "" } = props;
 
 const scene = inject('scene') as GraphCalculator;
 const modChain = inject('modChain') as Ref<Map<string, Modifier>>;
-const currentExpr = ref<string>("");
 
 /** Updates the modifier chain in response to changes made to a single modifier */
 function updateChain() {
@@ -60,8 +58,8 @@ function updateChain() {
     for (const [_, mod] of modChain.value) {
         expr = mod.template.replace('{expr}', expr);
     }
-    currentExpr.value = expr.replace("0 + ", "");
-    scene.setZEquals(currentExpr.value);
+    expr = expr.replace("0 + ", "");
+    scene.setZEquals(expr);
 }
 
 /** Called when the "Back" button is clicked */
@@ -86,9 +84,21 @@ onUpdated(() => {
 
 <template>
     <ToolboxSection>
-        <button @click="onBackClick">Back</button>
-        <p>{{currentExpr}}</p>
+        <RoundButton size="4rem" fill-color="none" icon="back" @click="onBackClick" />
+        <RoundButton size="4rem" fill-color="none" icon="delete" />
     </ToolboxSection>
-    &nbsp;
     <slot />
 </template>
+
+<!---->
+
+<style scoped lang="scss">
+.Toolbox__section {
+    margin-bottom: 2rem;
+
+    button {
+        margin-right: 1rem;
+        padding: 0 1rem;
+    }
+}
+</style>
