@@ -5,11 +5,14 @@ import { ref } from "vue";
 const props = defineProps<{
     /** Name of the SVG file under `src/icons/` (without extension). */
     name: string
+    /** @default black */
+    color?: string
 }>();
 
 /* Asynchronously load the SVG */
 const icon = ref("");
-import(`@/icons/${props.name}.svg?raw`).then(module => icon.value = module.default);
+const {color = "black"} = props;
+import(`@/icons/${props.name}.svg?raw`).then(module => icon.value = module.default.replaceAll('currentColor', color));
 </script>
 
 <!---->
