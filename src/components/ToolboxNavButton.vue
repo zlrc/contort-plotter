@@ -9,6 +9,8 @@ const emit = defineEmits<{
 const props = defineProps<{
     /** Name of the page the button points to */
     to: string
+    /** Name of the SVG icon */
+    icon: string
 }>();
 
 function onClick() {
@@ -19,7 +21,7 @@ function onClick() {
 <!---->
 
 <template>
-    <SquareButton class="Toolbox__nav-button" @click="onClick"/>
+    <SquareButton class="Toolbox__nav-button" :icon="props.icon" @click="onClick"/>
 </template>
 
 <!---->
