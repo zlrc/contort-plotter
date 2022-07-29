@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SVGIcon } from '@/components';
+
 const props = defineProps<{
     /** Passed through v-model */
     modelValue?: number
@@ -17,6 +19,12 @@ const props = defineProps<{
 
     /** @default black */
     thumbColor?: string
+
+    /** File name (without extension) of the left icon */
+    iconLeft?: string
+
+    /** File name (without extension) of the right icon */
+    iconRight?: string
 }>();
 
 const emit = defineEmits<{
@@ -33,13 +41,13 @@ const {
 
 <template>
     <div id="Slider__container">
-        <div class="Slider__tick start"/>
-        <input type="range" 
-            :min="min" :max="max" 
-            :value="modelValue" :step="step"
-            @input="emit('update:modelValue', Number(($event.target as HTMLInputElement).value))"
+        <SVGIcon v-if="props.iconLeft" :name="props.iconLeft" :color="thumbColor" />
+        <div class="Slider__tick start" />
+        <input type="range" :min="min" :max="max" :value="modelValue" :step="step"
+            @input="emit('update:modelValue', Number(($event.target as HTMLInputElement).value))" 
         />
-        <div class="Slider__tick end"/>
+        <div class="Slider__tick end" />
+        <SVGIcon v-if="props.iconRight" :name="props.iconRight" :color="thumbColor" />
     </div>
 </template>
 
@@ -119,14 +127,25 @@ $width-thumb-focus: $width-thumb + 0.75rem;
     background: $color-track;
 }
 
+.svg-icon {
+    height: auto;
+    width: 5rem;
+    min-width: 3rem;
+    padding: 0.25rem;
+}
+
 .Slider__tick {
     $offset: -1.5rem;
     display: block;
     height: 3rem;
     width: 3rem;
+    min-width: 3rem;
 
     border-radius: 100%;
     background: $color-track;
+
+    margin-top: auto;
+    margin-bottom: auto;
 
     &.start {
         margin-right: $offset;
