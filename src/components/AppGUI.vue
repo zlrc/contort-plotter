@@ -1,95 +1,129 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-
-import { FlagButton, Slider, SquareButton } from '@/components';
+import { computed, defineAsyncComponent, provide, ref } from 'vue';
+import { ChainNodeButton, SquareButton } from '@/components';
 import { GraphCalculator } from '@/scene';
 
 const props = defineProps<{
+    /** An instance of the Three.js GraphCalculator scene */
     scene: GraphCalculator
 }>();
 
+/** A current list of dynamically imported components */
+let imports: { [key: string]: Object } = {};
+
+
+/** Pages that don't need to be uniquely instanced (typically non-modifiers) */
+const staticPages = ["MainPage"];
+
+/** Whether or not the toolbox menu is open */
 const menuOpen = ref<boolean>(false);
 
-const expr = props.scene.guiState.z; // default expression for now
-const xParabola = ref(0);
-const yParabola = ref(0);
+/** The Modifier Chain: a metadata list of modifiers applied to the graph */
+const modChain = ref<Map<string, ModData>>(new Map());
 
-onMounted(() => {
-    return;
+/** Name of the current toolbox page being displayed */
+const currentPageName = ref("MainPage");
+
+/** KeepAlive key for the current toolbox page */
+const currentKey = ref(currentPageName.value);
+
+/** Props passed down to the current page component */
+const currentProps = ref({});
+
+/** The actual component object for the current page */
+const currentPage = computed(() => {
+    const pageName = currentPageName.value;
+    // Import and cache the component if needed
+    if (!(pageName in imports)) {
+        imports[pageName] = defineAsyncComponent(() =>
+            import(`@/pages/${pageName}.vue`)
+        );
+    }
+    return imports[pageName];
 });
 
+
+// Expose variables for child components to access
+provide('modChain', modChain);
+provide('scene', props.scene);
+
+
+/** Toggles opening the toolbox menu when the associated button is clicked */
 function onMenuButtonClick() {
     menuOpen.value = !menuOpen.value;
 }
 
-function onSliderInput() {
-    props.scene.setZEquals(`${expr} + ${xParabola.value} * x^2 + ${yParabola.value} * y^2`);
+/** Called when the user clicks on a navigation button that isn't in the top tray of nodes */
+function onRedirect(pageName : string) {
+    currentPageName.value = pageName;
+    currentProps.value = {}; // note: may need to use a switch statement if this varies later on
+    // Check if it's a static page
+    if (staticPages.includes(pageName)) {
+        currentKey.value = pageName;
+        return;
+    }
+    // Otherwise, assume it's a modifier page
+    const uid = Date.now().toString(36);
+    currentKey.value = uid;
+    currentProps.value = { id: uid };
+}
+
+/** Called when one of the nodes in the tray are clicked */
+function onNodeClick(id : string) {
+    currentKey.value = id;
+    currentProps.value = { id: id }
+    currentPageName.value = modChain.value.get(id)?.pageName as string;
 }
 </script>
 
 <!---->
 
 <template>
+    <div id="expression">f(x, y) = {{props.scene.currentExpr}}</div>
+
     <div id="Toolbox__container">
 
         <div id="Toolbox__tray">
-            <SquareButton id="menu-button" @click.stop="onMenuButtonClick" />
+            <SquareButton id="menu-button" icon="settings" @click.stop="onMenuButtonClick" />
             <div id="modifier-chain__container">
                 <div id="modifier-chain__flexwrap">
-                    <FlagButton class="modifier-chain__node" fill-color="violet" />
-                    <FlagButton class="modifier-chain__node" fill-color="blue" />
-                    <FlagButton class="modifier-chain__node" fill-color="green" />
-                    <FlagButton class="modifier-chain__node" fill-color="yellow" />
-                    <FlagButton class="modifier-chain__node" fill-color="orange" />
-                    <FlagButton class="modifier-chain__node" fill-color="red" />
+                    <ChainNodeButton 
+                        v-for="id in [...modChain.keys()].reverse()"
+                        :key="id"
+                        :id="id"
+                        :fill-color="modChain.get(id)?.color"
+                        :icon="modChain.get(id)?.icon"
+                        @click="onNodeClick"
+                    />
                 </div>
             </div>
         </div>
 
         <div id="Toolbox__body" :class="{open: menuOpen}">
             <div id="Toolbox__body__content">
-                <div class="Toolbox__section">
-                    <h3></h3>
-                    <div class="button-grid">
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                        <SquareButton class="button-grid__button" hidden/>
-                    </div>
-                </div>
-
-                <div class="Toolbox__section">
-                    <p>{{ `${expr} + ${xParabola}x^2 + ${yParabola}y^2` }}</p>
-                    <Slider 
-                        track-color="#EC368D"
-                        :min="-1" :max="1" :step="0.01" 
-                        v-model="xParabola" 
-                        @input="onSliderInput"
+                <KeepAlive>
+                    <component 
+                        :key="currentKey" 
+                        :is="currentPage" 
+                        v-bind="currentProps" 
+                        @redirect="onRedirect" 
                     />
-                </div>
-                &nbsp;
-                <div class="Toolbox__section">
-                    <Slider 
-                        track-color="#4A5899"
-                        :min="-1" :max="1" :step="0.01" 
-                        v-model="yParabola" 
-                        @input="onSliderInput"
-                    />
-                </div>
+                </KeepAlive>
             </div>
         </div>
+
     </div>
 </template>
 
 <!---->
 
 <style lang="scss">
-$border-width-global: 0.25rem;
-$height-tray: 5rem;
-$height-toolbox-body: 20rem;
+#expression {
+    font-family: $font-stack-expr;
+    font-weight: normal;
+    position: absolute;
+    margin: 0.25rem 0.5rem;
+}
 
 #Toolbox__container {
     display: flex;
@@ -115,6 +149,7 @@ $height-toolbox-body: 20rem;
 
         height: $height-tray;
         width: $height-tray;
+        padding: 0.5rem;
         
         border-width: $border-width-global;
         background: $color-menu-button-bg;
@@ -160,32 +195,5 @@ $height-toolbox-body: 20rem;
 
     height: 100%;
     width: max-content;
-
-    .modifier-chain__node {
-        flex-shrink: 0;
-        margin-left: 0;
-        padding-left: 0;
-        margin-right: -2.75rem;
-    }
-}
-
-.button-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-
-    width: 100%;
-
-    .button-grid__button {
-        height: $height-tray;
-        width: $height-tray;
-        margin: 1rem;
-
-        background: $color-menu-button-bg;
-
-        @media (max-width: 428px) {
-            margin: 0.45rem;
-        }
-    }
 }
 </style>
