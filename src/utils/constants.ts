@@ -1,5 +1,5 @@
 export const menu = {
-    "Modifiers": [
+    "Shapes": [
         {name: "Parabola", icon: "parabola"},
         {name: "Wave", icon: "wave"},
         {name: "Step", icon: "step"},
