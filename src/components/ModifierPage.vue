@@ -26,7 +26,10 @@ const props = defineProps<{
     color? : string
     /** Name of the modifier's SVG icon stored under `src/icons/` (without the file extension) */
     icon? : string
-    /** A unique identifier for distinguishing this component instance from others */
+    /** 
+     * A unique identifier for distinguishing this component instance from others.  
+     * **Note**: this prop is already provided by the AppGUI instance.
+     */
     id? : string
 }>();
 
@@ -60,11 +63,11 @@ function onBackClick() {
 }
 
 onMounted(() => {
-    if (!id)
+    if (!id) {
         console.error("One of the ModifierPage components is missing an id!");
-    else if (!modChain.value.has(id)) {
-        updateChain();
+        return;
     }
+    updateChain();
 });
 
 onUpdated(() => {
