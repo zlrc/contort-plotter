@@ -8,14 +8,6 @@ import {
 import { RoundButton, ToolboxSection } from '@/components';
 import { GraphCalculator } from '@/scene';
 
-/** Type definition for modifier chain nodes */
-type Modifier = {
-    pageName: string;
-    template: string;
-    color: string;
-    icon: string;
-}
-
 /* Emits */
 const emit = defineEmits<{
     (e: 'redirect', pageName: string): void
@@ -42,7 +34,7 @@ const { name, color = "white", icon = "" } = props; // note: "template" is alrea
 let { id = "" } = props;
 
 const scene = inject('scene') as GraphCalculator;
-const modChain = inject('modChain') as Ref<Map<string, Modifier>>;
+const modChain = inject('modChain') as Ref<Map<string, ModData>>;
 
 /** Updates the modifier chain in response to changes made to a single modifier */
 function updateChain() {
