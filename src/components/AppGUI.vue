@@ -13,7 +13,7 @@ let imports: { [key: string]: Object } = {};
 
 
 /** Pages that don't need to be uniquely instanced (typically non-modifiers) */
-const staticPages = ["MainPage"];
+const singletonPages = ["MainPage"];
 
 /** Whether or not the toolbox menu is open */
 const menuOpen = ref<boolean>(false);
@@ -58,7 +58,7 @@ function onRedirect(pageName : string) {
     currentPageName.value = pageName;
     currentProps.value = {}; // note: may need to use a switch statement if this varies later on
     // Check if it's a static page
-    if (staticPages.includes(pageName)) {
+    if (singletonPages.includes(pageName)) {
         currentKey.value = pageName;
         return;
     }
