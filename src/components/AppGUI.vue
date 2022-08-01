@@ -73,6 +73,9 @@ function onNodeClick(id : string) {
     currentKey.value = id;
     currentProps.value = { id: id }
     currentPageName.value = modChain.value.get(id)?.pageName as string;
+    // Open the toolbox if it's closed
+    if (!menuOpen.value)
+        menuOpen.value = true;
 }
 </script>
 

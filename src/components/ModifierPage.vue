@@ -10,6 +10,7 @@ import { GraphCalculator } from '@/scene';
 
 /* Emits */
 const emit = defineEmits<{
+    (e: 'deleted'): void
     (e: 'redirect', pageName: string): void
 }>();
 
@@ -35,6 +36,7 @@ const props = defineProps<{
 
 const { name, color = "white", icon = "" } = props; // note: "template" is already reserved by vue
 let { id = "" } = props;
+let deleted = false;
 
 const scene = inject('scene') as GraphCalculator;
 const modChain = inject('modChain') as Ref<Map<string, ModData>>;
@@ -42,12 +44,13 @@ const modChain = inject('modChain') as Ref<Map<string, ModData>>;
 /** Updates the modifier chain in response to changes made to a single modifier */
 function updateChain() {
     // Update this modifier's value
-    modChain.value.set(id, {
-        pageName: name,
-        template: props.template,
-        color: color,
-        icon: icon
-    });
+    if (!deleted)
+        modChain.value.set(id, {
+            pageName: name,
+            template: props.template,
+            color: color,
+            icon: icon
+        });
     // Update the final processed expression
     let expr = "0";
     for (const [_, mod] of modChain.value) {
@@ -59,6 +62,15 @@ function updateChain() {
 
 /** Called when the "Back" button is clicked */
 function onBackClick() {
+    emit("redirect", "MainPage");
+}
+
+/** Called when the delete button is clicked */
+function onDeleteClick() {
+    deleted = true;
+    modChain.value.delete(id);
+    updateChain();
+    emit("deleted");
     emit("redirect", "MainPage");
 }
 
@@ -80,7 +92,7 @@ onUpdated(() => {
 <template>
     <ToolboxSection>
         <RoundButton size="4rem" fill-color="none" icon="back" @click="onBackClick" />
-        <RoundButton size="4rem" fill-color="none" icon="delete" />
+        <RoundButton size="4rem" fill-color="none" icon="delete" @click="onDeleteClick" />
     </ToolboxSection>
     <slot />
 </template>
