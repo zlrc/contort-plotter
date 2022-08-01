@@ -1,3 +1,9 @@
+/**
+ * This file contains modified snippets of code from Stack Overflow, 
+ * which are licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
+ * The sources are linked below where appropriate.
+ */
+
 /** How much to shift brightness by in the contrast functions. */
 const CONTRAST_SHIFT = 150;
 
@@ -18,7 +24,7 @@ function clamp(value: number): number {
  * @param input 
  */
 export function parseColor(input : string): [number, number, number, number] {
-    const arr = input.split("(")[1].split(")")[0].split(",")
+    const arr = input.split("(")[1].split(")")[0].split(",");
     if (arr)
         return [parseInt(arr[0]), parseInt(arr[1]), parseInt(arr[2]), arr.length == 4 ? parseInt(arr[3]) : 1];
     return [0, 0, 0, 0];
