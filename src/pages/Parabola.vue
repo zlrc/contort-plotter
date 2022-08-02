@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { ModifierPage, Slider } from '@/components';
 
-const xParabola = ref(0.5);
-const template = ref(`{expr} + ${xParabola.value}*x^2`);
+const settings = ref<ModSettings>({
+    xParabola: 0.5
+});
 
-function onSliderInput() {
-    template.value = `{expr} + ${xParabola.value}*x^2`;
-}
+const template = computed(() => {
+    return `{expr} + ${settings.value.xParabola}*x^2`;
+});
 </script>
 
 <!---->
 
 <template>
-    <ModifierPage name="Parabola" color="#EC368D" :template="template" icon="parabola">
-        <Slider track-color="#EC368D" :min="0.01" :max="1" :step="0.01" v-model="xParabola"
+    <ModifierPage name="Parabola" color="#EC368D" :template="template" icon="parabola" v-model="settings">
+        <Slider track-color="#EC368D" :min="0.01" :max="1" :step="0.01" v-model="(settings.xParabola as number)"
             icon-left="parabola-flat"
             icon-right="parabola-tall" 
-            @input="onSliderInput" 
         />
     </ModifierPage>
 </template>

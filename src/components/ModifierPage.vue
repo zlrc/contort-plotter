@@ -12,6 +12,7 @@ import { GraphCalculator } from '@/scene';
 const emit = defineEmits<{
     (e: 'deleted'): void
     (e: 'redirect', pageName: string): void
+    (e: 'update:modelValue', value: ModSettings): void
 }>();
 
 /* Props */
@@ -32,10 +33,12 @@ const props = defineProps<{
      * **Note**: this prop is already provided by the AppGUI instance.
      */
     id? : string
+    /** The current settings for the modifier */
+    modelValue?: ModSettings
 }>();
 
 const { name, color = "white", icon = "" } = props; // note: "template" is already reserved by vue
-let { id = "" } = props;
+let { id = "", modelValue = undefined } = props;
 let deleted = false;
 
 const scene = inject('scene') as GraphCalculator;
@@ -49,7 +52,8 @@ function updateChain() {
             pageName: name,
             template: props.template,
             color: color,
-            icon: icon
+            icon: icon,
+            settings: modelValue
         });
     // Update the final processed expression
     let expr = "0";
@@ -75,10 +79,18 @@ function onDeleteClick() {
 }
 
 onMounted(() => {
+    // Needs to have an ID automatically assigned by AppGUI
     if (!id) {
         console.error("One of the ModifierPage components is missing an id!");
         return;
     }
+    // Look for any saved settings to load
+    const data = modChain.value.get(id);
+    if (data && data.settings) {
+        modelValue = data.settings;
+        emit("update:modelValue", data.settings); // updates the parent's state
+    }
+    // Update the chain
     updateChain();
 });
 

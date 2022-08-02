@@ -8,4 +8,11 @@ declare type ModData = {
     color: string;
     /** Icon displayed on the chain button (`ChainNodeButton.vue`). */
     icon: string;
+    /** Specific settings for this modifier */
+    settings?: ModSettings;
+}
+
+/** A dictionary of modifier-specific settings. */
+declare type ModSettings = {
+    [key: string]: number | boolean;
 }
