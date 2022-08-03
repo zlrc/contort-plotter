@@ -19,11 +19,8 @@ const emit = defineEmits<{
 const props = defineProps<{
     /** Name of the modifier, same as the file name without the '.vue' extension. */
     name : string
-    /**
-     * The modifier's template expression, instances of `{expr}` in the template are 
-     * replaced with the expression it is modifying.
-     */
-    template : string
+    /** The modifier's process function. */
+    processFn : ModData["processFn"]
     /** Color of the node button, must be CSS-friendly. */
     color? : string
     /** Name of the modifier's SVG icon stored under `src/icons/` (without the file extension) */
@@ -34,11 +31,11 @@ const props = defineProps<{
      */
     id? : string
     /** The current settings for the modifier */
-    modelValue?: ModSettings
+    modelValue: ModSettings
 }>();
 
-const { name, color = "white", icon = "" } = props; // note: "template" is already reserved by vue
-let { id = "", modelValue = undefined } = props;
+const { name, color = "white", icon = "" } = props;
+let { id = "", modelValue } = props;
 let deleted = false;
 
 const scene = inject('scene') as GraphCalculator;
@@ -50,17 +47,16 @@ function updateChain() {
     if (!deleted)
         modChain.value.set(id, {
             pageName: name,
-            template: props.template,
+            processFn: props.processFn,
             color: color,
             icon: icon,
-            settings: modelValue
+            settings: modelValue // TODO: only update this value after insertion
         });
     // Update the final processed expression
     let expr = "0";
     for (const [_, mod] of modChain.value) {
-        expr = mod.template.replace('{expr}', expr);
+        expr = mod.processFn(expr, mod.settings);
     }
-    expr = expr.replace("0 + ", "");
     scene.setZEquals(expr);
 }
 
