@@ -44,14 +44,19 @@ const modChain = inject('modChain') as Ref<Map<string, ModData>>;
 /** Updates the modifier chain in response to changes made to a single modifier */
 function updateChain() {
     // Update this modifier's value
-    if (!deleted)
-        modChain.value.set(id, {
-            pageName: name,
-            processFn: props.processFn,
-            color: color,
-            icon: icon,
-            settings: modelValue // TODO: only update this value after insertion
-        });
+    if (!deleted) {
+        const mod = modChain.value.get(id);
+        if (mod) // if it exists, only update the settings
+            mod.settings = modelValue;
+        else // if it doesn't, add it
+            modChain.value.set(id, {
+                pageName: name,
+                processFn: props.processFn,
+                color: color,
+                icon: icon,
+                settings: modelValue
+            });
+    }
     // Update the final processed expression
     let expr = "0";
     for (const [_, mod] of modChain.value) {
