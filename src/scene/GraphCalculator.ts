@@ -30,7 +30,7 @@ export class GraphCalculator {
 
     /** 3D mesh of the function being graphed */
     mesh!: GraphMesh;
-    
+
     /** Default GUI settings */
     guiState = {
         showGrid: true,         // whether or not the grid is visible
@@ -46,6 +46,9 @@ export class GraphCalculator {
         z: "sin(5x)*cos(5y)/5", // f(x,y,t) equation for the mesh
         t: 0.0                  // time variable
     };
+
+    /** The current expression being graphed */
+    currentExpr: string = this.guiState.z;
 
     constructor( canvas : HTMLCanvasElement ) {
         const persp = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
@@ -128,6 +131,7 @@ export class GraphCalculator {
         this.scene.remove(this.mesh);
         this.mesh = new GraphMesh(math.compile(expr), this.guiState.numFaces, undefined, undefined, t, wireframe);
         this.scene.add(this.mesh);
+        this.currentExpr = expr;
     }
 
     /**
