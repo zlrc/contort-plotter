@@ -28,6 +28,7 @@ onUpdated(() => {
 
 <template>
     <label class="switch">
+        <slot />
         <input type="checkbox" v-model="modelValue"/>
         <span class="slider" />
     </label>
@@ -59,20 +60,25 @@ $transition: 0.12s ease-out;
 // The component's surrounding container
 .switch {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     vertical-align: top;
+
+    align-items: center;
+    justify-content: space-between;
     
-    height: $size;
-    width: calc($size * 2);
+    height: fit-content;
+    width: fit-content;
 }
 
 
 // Background / Outline part of the switch
 .slider {
-    cursor: pointer;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    position: relative;
+    
+    height: $size;
+    width: auto;
+    min-width: calc($size * 2);
+    
     border: solid $border-width $color-border;
     border-radius: $border-radius;
 
