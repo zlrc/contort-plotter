@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lil-gui": "^0.16.1",
     "mathjs": "^10.6.1",
     "three": "^0.141.0",
     "vue": "^3.2.25"
