@@ -1,13 +1,10 @@
-import GUI from "lil-gui";
 import * as math from "mathjs";
 import {
     Camera,
     Color,
-    Matrix4,
     OrthographicCamera,
     PerspectiveCamera,
     Scene,
-    Vector3,
     WebGLRenderer
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -31,8 +28,8 @@ export class GraphCalculator {
     /** 3D mesh of the function being graphed */
     mesh!: GraphMesh;
 
-    /** Default GUI settings */
-    guiState = {
+    /** Default Configurations */
+    config = {
         showGrid: true,         // whether or not the grid is visible
         orthographic: false,    // whether orthographic camera is enabled or not
         showXY: false,          // visibility of the XY plane
@@ -48,7 +45,7 @@ export class GraphCalculator {
     };
 
     /** The current expression being graphed */
-    currentExpr: string = this.guiState.z;
+    currentExpr: string = this.config.z;
 
     constructor( canvas : HTMLCanvasElement ) {
         const persp = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
@@ -68,7 +65,7 @@ export class GraphCalculator {
      */
     private start() {
         // Shapes
-        this.mesh = new GraphMesh(math.compile(this.guiState.z), this.guiState.numFaces, undefined, undefined, this.guiState.t, this.guiState.wireframe);
+        this.mesh = new GraphMesh(math.compile(this.config.z), this.config.numFaces, undefined, undefined, this.config.t, this.config.wireframe);
         this.grid = new CoordinateGrid();
         
         // Lighting & Background
@@ -78,9 +75,6 @@ export class GraphCalculator {
         this.scene.add(this.grid);
         this.scene.add(this.mesh);
         this.scene.add(this.camera);
-
-        // GUI
-        //this.initGUI();
 
         // Controls
         this.controls.enablePan = false;
@@ -126,112 +120,65 @@ export class GraphCalculator {
      * @param expr graph expression, as a function of x, y, and t
      */
     setZEquals(expr : string) {
-        const t = this.guiState.t;
-        const wireframe = this.guiState.wireframe;
+        const t = this.config.t;
+        const wireframe = this.config.wireframe;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(expr), this.guiState.numFaces, undefined, undefined, t, wireframe);
+        this.mesh = new GraphMesh(math.compile(expr), this.config.numFaces, undefined, undefined, t, wireframe);
         this.scene.add(this.mesh);
         this.currentExpr = expr;
     }
 
-    /**
-     * Initializes lil-gui.
-     */
-    initGUI() {
-        const gui = new GUI();
-        const grid = gui.addFolder("Grid Settings");
-        const mesh = gui.addFolder("Mesh Settings");
-        
-        // Misc. Category
-        gui.add(this.guiState, "showGrid").name("Show Grid").onChange(
-            (value: boolean) => {
-                this.grid.visible = value;
-            }
-        );
-        gui.add(this.guiState, "orthographic").name("Orthographic").onChange(
-            (value: boolean) => {
-                const canvas = this.canvas;
-                this.scene.remove(this.camera);
-                if(value) {
-                    this.camera = new OrthographicCamera(-canvas.width / 2, canvas.width / 2, canvas.height / 2, -canvas.height / 2, 0.1, 1000.0);
-                    (this.camera as OrthographicCamera).zoom = 500;
-                } else {
-                    this.camera = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
-                }
-                this.camera.position.set(0, 0, 5);
-                this.controls = new OrbitControls(this.camera, canvas);
-                this.scene.add(this.camera);
-            }
-        );
-        gui.add(this.guiState, "z").name("z = ").onChange(
-            this.setZEquals.bind(this)
-        );
-        gui.add(this.guiState, "t", 0.0, 6.28, 0.01).name("t = ").onChange(
-            (value: number) => {
-                const z = this.guiState.z;
-                const wireframe = this.guiState.wireframe;
-                this.scene.remove(this.mesh);
-                this.mesh = new GraphMesh(math.compile(z), this.guiState.numFaces, undefined, undefined, value, wireframe);
-                this.scene.add(this.mesh);
-            }
-        );
-        
-        // Grid Settings
-        grid.add(this.guiState, "showXY").name("XY Plane").onChange(
-            (value: boolean) => {
-                this.grid.xyPlane.visible = value;
-            }
-        );
-        grid.add(this.guiState, "showXZ").name("XZ Plane").onChange(
-            (value: boolean) => {
-                this.grid.xzPlane.visible = value;
-            }
-        );
-        grid.add(this.guiState, "showYZ").name("YZ Plane").onChange(
-            (value: boolean) => {
-                this.grid.yzPlane.visible = value;
-            }
-        );
-        grid.add(this.guiState, "gridScale", 1, 10, 1).name("Grid Scale").onChange(
-            (value: number) => {
-                const scaleTransform = new Matrix4();
-                scaleTransform.scale(new Vector3(1,1,1).divide(this.grid.scale));
-                scaleTransform.scale(new Vector3(value, value, value));
-                this.grid.applyMatrix4(scaleTransform);
-            }
-        );
-        grid.add(this.guiState, "gridDivisions", 1, 5, 1).name("Grid Divisions").onChange(
-            (value: number) => {
-                this.grid.setDivisions(value);
-            }
-        );
-        
-        // Mesh Settings
-        mesh.add(this.guiState, "numFaces", 1, 256, 3).name("Mesh Faces").onChange(
-            (value: number) => {
-                const z = this.guiState.z;
-                const t = this.guiState.t;
-                const wireframe = this.guiState.wireframe;
-                this.guiState.numFaces = Math.pow(Math.floor(Math.sqrt(value)),2);
-                this.scene.remove(this.mesh);
-                this.mesh = new GraphMesh(math.compile(z), this.guiState.numFaces, undefined, undefined, t, wireframe);
-                this.mesh.toggleMesh(this.guiState.mesh);
-                this.scene.add(this.mesh);
-            }
-        );
-        mesh.add(this.guiState, "wireframe").name("Wireframe").onChange(
-            (value: boolean) => {
-                this.guiState.wireframe = value;
-                this.mesh.toggleWireframe(value);
-            }
-        );
-        mesh.add(this.guiState, "mesh").name("Solid").onChange(
-            (value: boolean) => {
-                this.guiState.mesh = value;
-                this.mesh.toggleMesh(value);
-            }
-        );
-        
-        return gui;
+    // ------------------------------------------ //
+    // Helper Functions for Configuring the Graph //
+    // ------------------------------------------ //
+    // TODO: Documentation
+    
+    toggleOrthographic(value: boolean) {
+        const canvas = this.canvas;
+        this.scene.remove(this.camera);
+        if (value) {
+            this.camera = new OrthographicCamera(-canvas.width / 2, canvas.width / 2, canvas.height / 2, -canvas.height / 2, 0.1, 1000.0);
+            (this.camera as OrthographicCamera).zoom = 500;
+        } else {
+            this.camera = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
+        }
+        this.camera.position.set(0, 0, 5);
+        this.controls = new OrbitControls(this.camera, canvas);
+        this.scene.add(this.camera);
+    }
+
+    setTime(t: number) {
+        const z = this.config.z;
+        const wireframe = this.config.wireframe;
+        this.scene.remove(this.mesh);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe);
+        this.scene.add(this.mesh);
+    }
+
+    setPolygons(amount: number) {
+        const z = this.currentExpr;
+        const t = this.config.t;
+        const wireframe = this.config.wireframe;
+        if (amount < 1 || (Math.sqrt(amount) % 1 !== 0))
+            return;
+        this.config.numFaces = amount;
+        this.scene.remove(this.mesh);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe);
+        this.mesh.toggleMesh(this.config.mesh);
+        this.scene.add(this.mesh);
+    }
+
+    toggleWireframe(value: boolean) {
+        this.config.wireframe = value;
+        this.mesh.toggleWireframe(value);
+    }
+
+    toggleMesh(value: boolean) {
+        this.config.mesh = value;
+        this.mesh.toggleMesh(value);
+    }
+
+    setAutoRotate(enabled: boolean) {
+        this.controls.autoRotate = enabled;
     }
 }
