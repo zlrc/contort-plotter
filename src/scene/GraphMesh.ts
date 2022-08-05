@@ -69,6 +69,9 @@ export class GraphMesh extends Object3D {
         this.computeGeometry();
         this.toggleMesh(true);
         this.toggleWireframe(wireframe);
+
+        this.toggleWireframe = this.toggleWireframe.bind(this);
+        this.toggleMesh = this.toggleMesh.bind(this);
     }
 
     /**
