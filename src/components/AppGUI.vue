@@ -13,7 +13,10 @@ let imports: { [key: string]: Object } = {};
 
 
 /** Pages that don't need to be uniquely instanced (typically non-modifiers) */
-const singletonPages = ["MainPage"];
+const singletonPages = ["MainPage", "Config"];
+
+/** Whether or not to display the current equation */
+const showEquation = ref<boolean>(false);
 
 /** Whether or not the toolbox menu is open */
 const menuOpen = ref<boolean>(false);
@@ -46,6 +49,7 @@ const currentPage = computed(() => {
 // Expose variables for child components to access
 provide('modChain', modChain);
 provide('scene', props.scene);
+provide('showEquation', showEquation);
 
 
 /** Toggles opening the toolbox menu when the associated button is clicked */
@@ -82,7 +86,7 @@ function onNodeClick(id : string) {
 <!---->
 
 <template>
-    <div id="expression">f(x, y) = {{props.scene.currentExpr}}</div>
+    <div id="equation" v-if="showEquation">f(x, y) = {{props.scene.currentExpr}}</div>
 
     <div id="Toolbox__container">
 
@@ -119,7 +123,7 @@ function onNodeClick(id : string) {
 <!---->
 
 <style lang="scss">
-#expression {
+#equation {
     font-family: $font-stack-expr;
     font-weight: normal;
     position: absolute;
@@ -160,7 +164,7 @@ function onNodeClick(id : string) {
 
 #Toolbox__body {
     display: hidden;
-    overflow-y: hidden;
+    overflow-y: scroll;
 
     height: 0;
     
@@ -176,9 +180,7 @@ function onNodeClick(id : string) {
 }
 
 #Toolbox__body__content {
-    overflow-y: hidden; //scroll;
-
-    height: 100%;
+    height: auto;
     margin: 1rem;
 }
 
