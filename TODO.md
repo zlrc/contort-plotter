@@ -1,20 +1,26 @@
 ## Goals for Public Release
-- [ ] Refactoring*
-    - [ ] Extract individual components from AppGUI.vue into their own separate files*
-    - [x] Create a global Sass variables file*
+- [x] Refactoring
+    - [x] Extract individual components from AppGUI.vue into their own separate files
+    - [x] Create a global Sass variables file
 
-- [ ] Working expandable GUI framework
+- [x] Working expandable GUI framework
 - [ ] GUI Components
-    - [ ] Toolbox menu
-        - [ ] Page navigation*
+    - [x] Toolbox menu
+        - [x] Page navigation
         - [x] "Open Menu" Button 
-        - [ ] Modifier Icon Button
+        - [x] Modifier Icon Button
     - [x] Modifier Chain Button
-    - [ ] Equation Input Box
-    - [ ] SVG Icons that are dynamically loaded from file
-        - [ ] Slider Icons*
-        - [ ] Button Icons*
-- [ ] Working modifier chain system
+    - [x] Final equation displayed somewhere
+    - [x] SVG Icons that are dynamically loaded from file
+        - [x] Slider Icons
+        - [x] Button Icons
+    - [x] Custom header text prop for ToolboxSection components
+    - [x] Toggle Switch Button
+    - [ ] Text Input Box
+- [x] Working modifier chain system
+    - [x] Add
+    - [x] Edit
+    - [x] Delete
 - [ ] Working graph modifiers:
     - [ ] Parabola
     - [ ] Wave
@@ -22,10 +28,17 @@
     - [ ] Custom expression
 - [x] ~~Fixed~~ Orthographic View that is enabled by default
 - [ ] Default camera positioning from the top corner (instead of from the side)
-
-* = Tasks I left off with since last time
+- [x] Advanced config menu
+- [ ] Configurable hard limits on things like zoom, modifiers, domain/range, etc.
+- [ ] Mouse-hover effects for all button & input components
 
 ## Stretch Goals
+- [ ] Add screen reader labels
+- [ ] Timer modifier
+- [ ] Ability to change modifier order
+- [ ] Optimize updates by pre-processing modifiers that come before and after the currently selected one
+- [ ] Custom Vertical Scrollbar
+- [ ] Selected modifiers highlight parts of the final equation that they modify 
 - [ ] Support for Polar Coordinates
 - [ ] Support for Parametric Functions
 - [ ] Alternative mesh outline method
