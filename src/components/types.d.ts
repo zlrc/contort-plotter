@@ -19,5 +19,5 @@ declare type ModData = {
 
 /** A dictionary of modifier-specific settings. */
 declare type ModSettings = {
-    [key: string]: number | boolean;
+    [key: string]: number | boolean | string;
 }
