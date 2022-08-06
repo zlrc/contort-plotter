@@ -8,6 +8,7 @@ export {default as RoundButton} from './RoundButton.vue';
 export {default as Slider} from './Slider.vue';
 export {default as SquareButton} from './SquareButton.vue';
 export {default as SVGIcon} from './SVGIcon.vue';
+export {default as TextInputBox} from './TextInputBox.vue';
 export {default as ToggleSwitch} from './ToggleSwitch.vue';
 export {default as ToolboxNavButton} from './ToolboxNavButton.vue';
 export {default as ToolboxSection} from './ToolboxSection.vue';
