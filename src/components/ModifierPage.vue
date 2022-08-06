@@ -2,8 +2,8 @@
 import { 
     inject, 
     onMounted, 
-    onUpdated, 
-    Ref
+    Ref,
+    watchEffect
 } from 'vue';
 import { RoundButton, ToolboxSection } from '@/components';
 import { GraphCalculator } from '@/scene';
@@ -91,12 +91,8 @@ onMounted(() => {
         modelValue = data.settings;
         emit("update:modelValue", data.settings); // updates the parent's state
     }
-    // Update the chain
-    updateChain();
-});
-
-onUpdated(() => {
-    updateChain();
+    // Update the chain & watch for updates
+    watchEffect(updateChain);
 });
 </script>
 
