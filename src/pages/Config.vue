@@ -37,7 +37,7 @@ const sections = [
             },
             {
                 content: "Show Equation:", is: ToggleSwitch, props: {},
-                value: showEquation,
+                value: showEquation.value,
                 update: (value: boolean) => showEquation.value = value
             },
             {
