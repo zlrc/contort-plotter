@@ -36,6 +36,11 @@ const sections = [
                 update: (value: boolean) => scene.setAutoRotate(value)
             },
             {
+                content: "Enable Panning: ", is: ToggleSwitch, props: {},
+                value: scene.controls.enablePan,
+                update: (value: boolean) => scene.controls.enablePan = value
+            },
+            {
                 content: "Show Equation:", is: ToggleSwitch, props: {},
                 value: showEquation.value,
                 update: (value: boolean) => showEquation.value = value
