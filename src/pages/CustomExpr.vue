@@ -27,7 +27,7 @@ function process(expr: string, settings: ModSettings) {
 <!---->
 
 <template>
-    <ModifierPage name="CustomExpr" :color="color" :process-fn="process" icon="" v-model="settings">
+    <ModifierPage name="CustomExpr" :color="color" :process-fn="process" icon="custom" v-model="settings">
         <ToolboxSection class="input-box__container">
             <p class="func-text">f(x, y) = </p>
             <TextInputBox class="input-box" v-model="(settings.text as string)" />

@@ -5,7 +5,7 @@ export const menu = {
         {name: "Step", icon: "step"},
     ],
     "Advanced": [
-        {name: "CustomExpr", icon: ""},
+        {name: "CustomExpr", icon: "custom"},
         {name: "Config", icon: "ellipsis"}
     ]
 }
