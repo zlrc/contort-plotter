@@ -45,6 +45,16 @@ const currentPage = computed(() => {
     return imports[pageName];
 });
 
+/** Reference to the modifier chain container */
+const chainContainer = ref<HTMLElement>();
+
+/** The horizontal scrollbar's height */
+const scrollbarHeight = computed(() => {
+    const el = chainContainer.value;
+    if (el)
+        return `${Math.abs(el.offsetHeight - el.clientHeight)}px`;
+});
+
 
 // Expose variables for child components to access
 provide('modChain', modChain);
@@ -92,7 +102,7 @@ function onNodeClick(id : string) {
 
         <div id="Toolbox__tray">
             <SquareButton id="menu-button" icon="settings" @click.stop="onMenuButtonClick" />
-            <div id="modifier-chain__container">
+            <div id="modifier-chain__container" ref="chainContainer">
                 <div id="modifier-chain__flexwrap">
                     <ChainNodeButton 
                         v-for="id in [...modChain.keys()].reverse()"
@@ -143,6 +153,7 @@ function onNodeClick(id : string) {
 #Toolbox__tray {
     width: 100%;
     height: $height-tray;
+    overflow-y: clip; // clips the horizontal scrollbar
     
     @include stripe-background($color-tray-bg);
 
@@ -185,9 +196,10 @@ function onNodeClick(id : string) {
 }
 
 #modifier-chain__container {
-    overflow-x: hidden; // TODO: drag to scroll
+    $height-scrollbar: v-bind(scrollbarHeight);
+    overflow-x: scroll;
     overflow-y: clip;
-    height: 100%;
+    height: calc(100% + $height-scrollbar);
     width: calc(100% - $height-tray);
 }
 
@@ -196,7 +208,7 @@ function onNodeClick(id : string) {
     flex-direction: row-reverse;
     justify-content: flex-end;
 
-    height: 100%;
+    height: $height-tray;
     width: max-content;
 }
 </style>
