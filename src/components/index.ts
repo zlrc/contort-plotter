@@ -1,5 +1,6 @@
 export {default as AppCanvas} from './AppCanvas.vue';
 export {default as AppGUI} from './AppGUI.vue';
+export {default as AxisToggleButton} from './AxisToggleButton.vue';
 export {default as ButtonGrid} from './ButtonGrid.vue';
 export {default as ChainNodeButton} from './ChainNodeButton.vue';
 export {default as FlagButton} from './FlagButton.vue';
