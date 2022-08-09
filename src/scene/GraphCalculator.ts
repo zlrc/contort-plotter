@@ -50,11 +50,11 @@ export class GraphCalculator {
     constructor( canvas : HTMLCanvasElement ) {
         const persp = new PerspectiveCamera(48, canvas.width / canvas.height, 0.1, 1000.0);
         const ortho = new OrthographicCamera(-canvas.width / 2, canvas.width / 2, canvas.height / 2, -canvas.height / 2, 0.1, 1000.0);
-        ortho.zoom = 100;
+        ortho.zoom = 120;
         this.canvas = canvas;
         this.scene = new Scene();
         this.camera = ortho;
-        this.camera.position.set(0, 0, 5);
+        this.camera.position.set(-5, 5, 5);
         this.controls = new OrbitControls(this.camera, canvas);
         this.renderer = new WebGLRenderer({ canvas, antialias: true });
         this.start();
