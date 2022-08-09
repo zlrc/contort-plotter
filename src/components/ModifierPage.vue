@@ -100,8 +100,13 @@ onMounted(() => {
 
 <template>
     <ToolboxSection>
-        <RoundButton size="4rem" fill-color="none" icon="back" @click="onBackClick" />
-        <RoundButton size="4rem" fill-color="none" icon="delete" @click="onDeleteClick" />
+        <div class="header__part left">
+            <RoundButton size="4rem" fill-color="none" icon="back" @click="onBackClick" />
+            <RoundButton size="4rem" fill-color="none" icon="delete" @click="onDeleteClick" />
+        </div>
+        <div class="header__part right">
+            <slot name="header" />
+        </div>
     </ToolboxSection>
     <slot />
 </template>
@@ -110,11 +115,24 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .Toolbox__section {
+    display: flex;
     margin-bottom: 2rem;
 
     button {
         margin-right: 1rem;
         padding: 0 1rem;
+    }
+}
+
+.header__part {
+    &.left {
+        width: calc(100% - 4rem);
+    }
+
+    &.right {
+        width: 4rem;
+        display: flex;
+        justify-content: end;
     }
 }
 </style>
