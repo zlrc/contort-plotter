@@ -57,7 +57,15 @@ export class GraphMesh extends Object3D {
      * @param min minimum x and y coordinate to draw the mesh from
      * @param max maximum x and y coordinate to draw the mesh to
      */
-    constructor(fn : EvalFunction, numFaces : number = 4.0, min : number = -1.0, max : number = 1.0, t : number = 0.0, wireframe : boolean = true) {
+    constructor(
+        fn : EvalFunction, 
+        numFaces : number = 4.0, 
+        min : number = -1.0, 
+        max : number = 1.0, 
+        t : number = 0.0, 
+        wireframe : boolean = true, 
+        mesh : boolean = true
+    ) {
         super();
 
         this.minCoord = min;
@@ -67,7 +75,7 @@ export class GraphMesh extends Object3D {
         this.t = t;
 
         this.computeGeometry();
-        this.toggleMesh(true);
+        this.toggleMesh(mesh);
         this.toggleWireframe(wireframe);
 
         this.toggleWireframe = this.toggleWireframe.bind(this);

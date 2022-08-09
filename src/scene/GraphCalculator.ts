@@ -65,7 +65,7 @@ export class GraphCalculator {
      */
     private start() {
         // Shapes
-        this.mesh = new GraphMesh(math.compile(this.config.z), this.config.numFaces, undefined, undefined, this.config.t, this.config.wireframe);
+        this.mesh = new GraphMesh(math.compile(this.config.z), this.config.numFaces, undefined, undefined, this.config.t, this.config.wireframe, this.config.mesh);
         this.grid = new CoordinateGrid();
         
         // Lighting & Background
@@ -122,8 +122,9 @@ export class GraphCalculator {
     setZEquals(expr : string) {
         const t = this.config.t;
         const wireframe = this.config.wireframe;
+        const mesh = this.config.mesh;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(expr), this.config.numFaces, undefined, undefined, t, wireframe);
+        this.mesh = new GraphMesh(math.compile(expr), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
         this.scene.add(this.mesh);
         this.currentExpr = expr;
     }
@@ -150,8 +151,9 @@ export class GraphCalculator {
     setTime(t: number) {
         const z = this.config.z;
         const wireframe = this.config.wireframe;
+        const mesh = this.config.mesh;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
         this.scene.add(this.mesh);
     }
 
@@ -159,11 +161,12 @@ export class GraphCalculator {
         const z = this.currentExpr;
         const t = this.config.t;
         const wireframe = this.config.wireframe;
+        const mesh = this.config.mesh;
         if (amount < 1 || (Math.sqrt(amount) % 1 !== 0))
             return;
         this.config.numFaces = amount;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
         this.mesh.toggleMesh(this.config.mesh);
         this.scene.add(this.mesh);
     }
