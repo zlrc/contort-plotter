@@ -56,7 +56,7 @@ const sections = [
         title: "Polygon Count:",
         items: [
             {
-                content: "", is: Slider, props: {min: 1, max: 32, step: 1},
+                content: "", is: Slider, props: {min: 1, max: 32, step: 1, iconLeft: "abs", iconRight: "parabola"},
                 value: Math.sqrt(scene.config.numFaces),
                 update: (value: number) => scene.setPolygons(value * value)
             }
