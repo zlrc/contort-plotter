@@ -164,7 +164,7 @@ function onNodeClick(id : string) {
 
 #Toolbox__body {
     display: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     height: 0;
     
