@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUpdated } from 'vue';
+import { onUpdated, ref } from 'vue';
 
 const props = defineProps<{
     /** 
@@ -18,9 +18,10 @@ const emit = defineEmits<{
 }>();
 
 const { color = "black", size = "4rem" } = props;
+const modelValue = props.modelValue ? ref(props.modelValue) : ref(false);
 
 onUpdated(() => {
-    emit('update:modelValue', props.modelValue as boolean);
+    emit('update:modelValue', modelValue.value as boolean);
 });
 </script>
 

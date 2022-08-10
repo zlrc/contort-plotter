@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUpdated } from 'vue';
+import { onUpdated, ref } from 'vue';
 
 const props = defineProps<{
     /** Passed through v-model */
@@ -8,12 +8,14 @@ const props = defineProps<{
     placeholder?: string
 }>();
 
+const modelValue = props.modelValue ? ref(props.modelValue) : ref("");
+
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
 }>();
 
 onUpdated(() => {
-    emit('update:modelValue', props.modelValue as string);
+    emit('update:modelValue', modelValue.value as string);
 });
 </script>
 
