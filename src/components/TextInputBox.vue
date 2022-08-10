@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onUpdated, ref } from 'vue';
-
 const props = defineProps<{
     /** Passed through v-model */
     modelValue?: string
@@ -8,21 +6,16 @@ const props = defineProps<{
     placeholder?: string
 }>();
 
-const modelValue = props.modelValue ? ref(props.modelValue) : ref("");
-
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
 }>();
-
-onUpdated(() => {
-    emit('update:modelValue', modelValue.value as string);
-});
 </script>
 
 <!---->
 
 <template>
-    <input id="textbox" v-model="modelValue" :placeholder="props.placeholder" />
+    <input id="textbox" type="text" :value="modelValue" :placeholder="props.placeholder" 
+        @input="e => emit('update:modelValue', (e.target as HTMLInputElement).value)" />
 </template>
 
 <!---->
