@@ -118,12 +118,7 @@ function onNodeClick(id : string) {
 
         <div id="Toolbox__body" :class="{open: menuOpen}">
             <div id="Toolbox__body__content">
-                <component 
-                    :key="currentKey" 
-                    :is="currentPage" 
-                    v-bind="currentProps" 
-                    @redirect="onRedirect" 
-                />
+                <component :key="currentKey" :is="currentPage" v-bind="currentProps" @redirect="onRedirect" />
             </div>
         </div>
 
