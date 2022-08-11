@@ -32,4 +32,18 @@ function onCanvasReady(calc : GraphCalculator) {
   max-height: 100%;
   max-width: 100%;
 }
+
+a {
+  &:link {
+    color: $palette-pink;
+  }
+
+  &:visited {
+    color: red;
+  }
+
+  &:active {
+    color: $palette-blue;
+  }
+}
 </style>
