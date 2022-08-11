@@ -47,3 +47,14 @@ $height-toolbox-body: 20rem;
         transition-duration: 0s !important;
     }
 }
+
+/* iOS Style Reset */
+* {
+    -webkit-text-size-adjust: none;
+    padding: 0;
+}
+
+/* Disable Vertical Scroll Bounce on Certain Browsers */
+html, body {
+    overscroll-behavior-y: none;
+}
