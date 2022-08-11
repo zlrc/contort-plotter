@@ -39,3 +39,11 @@ $height-toolbox-body: 20rem;
         $dark-color 100%);
     background-size: 98.99px 98.99px;
 }
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation: none !important;
+        transition-duration: 0s !important;
+    }
+}

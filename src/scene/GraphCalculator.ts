@@ -86,6 +86,11 @@ export class GraphCalculator {
         this.controls.autoRotateSpeed *= -0.5;
         //this.controls.minZoom = 50;
         //this.controls.rotateSpeed = 0.5;
+
+        // Disable auto-rotate if reduced motion is preferred
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (motionQuery && motionQuery.matches)
+            this.controls.autoRotate = false;
     }
 
     /**
