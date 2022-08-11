@@ -5,6 +5,7 @@ export {default as ButtonGrid} from './ButtonGrid.vue';
 export {default as ChainNodeButton} from './ChainNodeButton.vue';
 export {default as FlagButton} from './FlagButton.vue';
 export {default as ModifierPage} from './ModifierPage.vue';
+export {default as PopupOverlay} from './PopupOverlay.vue';
 export {default as RoundButton} from './RoundButton.vue';
 export {default as Slider} from './Slider.vue';
 export {default as SquareButton} from './SquareButton.vue';
