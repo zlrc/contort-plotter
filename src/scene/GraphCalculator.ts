@@ -84,8 +84,7 @@ export class GraphCalculator {
         this.controls.dampingFactor = 0.07;
         this.controls.autoRotate = true;
         this.controls.autoRotateSpeed *= -0.5;
-        //this.controls.minZoom = 50;
-        //this.controls.rotateSpeed = 0.5;
+        this.controls.minZoom = 50;
 
         // Disable auto-rotate if reduced motion is preferred
         const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
