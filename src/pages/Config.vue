@@ -66,6 +66,16 @@ const sections = [
                 update: (value: number) => scene.setPolygons(value * value)
             }
         ]
+    },
+    {
+        title: "Grid Divisions:",
+        items: [
+            {
+                content: "", is: Slider, props: { min: 0, max: 5, step: 1, iconLeft: "square", iconRight: "square-grid" },
+                value: scene.getGridDivisions(),
+                update: (value: number) => scene.setGridDivisions(value)
+            }
+        ]
     }
 ];
 </script>

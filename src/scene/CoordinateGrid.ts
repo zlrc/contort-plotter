@@ -80,6 +80,8 @@ export class CoordinateGrid extends Object3D {
     xzPlane : Object3D;
     yzPlane : Object3D;
 
+    boxmat : ShaderMaterial;
+
     constructor() {
         super();
         
@@ -92,17 +94,20 @@ export class CoordinateGrid extends Object3D {
         this.yzPlane = newPlane().rotateZ(Math.PI/2).rotateX(Math.PI/2);
         
         const boxgeom = new BoxGeometry(2, 2, 2);
-        const boxmat = new ShaderMaterial({
+        this.boxmat = new ShaderMaterial({
             vertexShader: vertShader,
             fragmentShader: fragShader,
             side: BackSide,
             polygonOffset: true,
             polygonOffsetFactor: 1,
             polygonOffsetUnits: 1,
-            depthTest: false
+            depthTest: false,
+            uniforms: {
+                width: { value: 50.0 }
+            }
         });
 
-        const box = new Mesh(boxgeom, boxmat);
+        const box = new Mesh(boxgeom, this.boxmat);
         box.renderOrder = -2;
         this.add(box);
 
@@ -136,5 +141,9 @@ export class CoordinateGrid extends Object3D {
         this.add(this.xyPlane);
         this.add(this.xzPlane);
         this.add(this.yzPlane);
+    }
+
+    setGridSquareWidth(value : number) {
+        this.boxmat.uniforms.width.value = value;
     }
 }

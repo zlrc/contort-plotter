@@ -189,4 +189,15 @@ export class GraphCalculator {
     setAutoRotate(enabled: boolean) {
         this.controls.autoRotate = enabled;
     }
+
+    setGridDivisions(amount : number) {
+        let width = 100.0;
+        if (amount > 0)
+            width = 50.0 / amount;
+        this.grid.setGridSquareWidth(width);
+    }
+
+    getGridDivisions() : number { 
+        return Math.floor(50.0 / this.grid.boxmat.uniforms.width.value);
+    }
 }
