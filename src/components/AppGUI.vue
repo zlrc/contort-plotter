@@ -77,6 +77,11 @@ function onRedirect(pageName : string) {
         return;
     }
     // Otherwise, assume it's a modifier page
+    if (modChain.value.size >= 20) {
+        alert("Maximum limit reached!");
+        currentPageName.value = "MainPage";
+        return;
+    }
     const uid = Date.now().toString(36);
     currentKey.value = uid;
     currentProps.value = { id: uid };
