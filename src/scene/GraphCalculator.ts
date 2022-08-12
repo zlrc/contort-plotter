@@ -39,7 +39,7 @@ export class GraphCalculator {
         gridDivisions: 1,       // number of times to divide the grid planes
         wireframe: true,        // whether the mesh wireframe is visible or not
         mesh: true,             // whether the solid part of the mesh is visible or not
-        numFaces: 256,           // i.e. the polygon count of the graphed mesh
+        numFaces: 256,          // i.e. the polygon count of the graphed mesh
         z: "0",                 // f(x,y,t) equation for the mesh
         t: 0.0                  // time variable
     };
