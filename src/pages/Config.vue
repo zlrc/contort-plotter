@@ -76,6 +76,16 @@ const sections = [
                 update: (value: number) => scene.setGridDivisions(value)
             }
         ]
+    },
+    {
+        title: "Surface Size:",
+        items: [
+            {
+                content: "", is: Slider, props: { min: 0.5, max: 2, step: 0.5, iconLeft: "square-small", iconRight: "square" },
+                value: scene.config.size,
+                update: (value: number) => scene.setSurfaceSize(value)
+            }
+        ]
     }
 ];
 </script>

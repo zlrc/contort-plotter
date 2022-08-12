@@ -41,7 +41,8 @@ export class GraphCalculator {
         mesh: true,             // whether the solid part of the mesh is visible or not
         numFaces: 256,          // i.e. the polygon count of the graphed mesh
         z: "0",                 // f(x,y,t) equation for the mesh
-        t: 0.0                  // time variable
+        t: 0.0,                 // time variable
+        size: 1                 // absolute value of the min & max domain
     };
 
     /** The current expression being graphed */
@@ -65,7 +66,7 @@ export class GraphCalculator {
      */
     private start() {
         // Shapes
-        this.mesh = new GraphMesh(math.compile(this.config.z), this.config.numFaces, undefined, undefined, this.config.t, this.config.wireframe, this.config.mesh);
+        this.mesh = new GraphMesh(math.compile(this.config.z), this.config.numFaces, -this.config.size, this.config.size, this.config.t, this.config.wireframe, this.config.mesh);
         this.grid = new CoordinateGrid();
         
         // Lighting & Background
@@ -128,7 +129,7 @@ export class GraphCalculator {
         const wireframe = this.config.wireframe;
         const mesh = this.config.mesh;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(expr), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
+        this.mesh = new GraphMesh(math.compile(expr), this.config.numFaces, -this.config.size, this.config.size, t, wireframe, mesh);
         this.scene.add(this.mesh);
         this.currentExpr = expr;
     }
@@ -157,7 +158,7 @@ export class GraphCalculator {
         const wireframe = this.config.wireframe;
         const mesh = this.config.mesh;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, -this.config.size, this.config.size, t, wireframe, mesh);
         this.scene.add(this.mesh);
     }
 
@@ -170,7 +171,7 @@ export class GraphCalculator {
             return;
         this.config.numFaces = amount;
         this.scene.remove(this.mesh);
-        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, undefined, undefined, t, wireframe, mesh);
+        this.mesh = new GraphMesh(math.compile(z), this.config.numFaces, -this.config.size, this.config.size, t, wireframe, mesh);
         this.mesh.toggleMesh(this.config.mesh);
         this.scene.add(this.mesh);
     }
@@ -198,5 +199,21 @@ export class GraphCalculator {
 
     getGridDivisions() : number { 
         return Math.floor(50.0 / this.grid.boxmat.uniforms.width.value);
+    }
+
+    // TODO: add a common function for re-graphing the plot
+    setSurfaceSize(value : number) { 
+        const z = this.currentExpr;
+        const t = this.config.t;
+        const wireframe = this.config.wireframe;
+        const mesh = this.config.mesh;
+        const numFaces = this.config.numFaces;
+        if (value === 0)
+            return;
+        this.config.size = Math.abs(value);
+        this.scene.remove(this.mesh);
+        this.mesh = new GraphMesh(math.compile(z), numFaces, -this.config.size, this.config.size, t, wireframe, mesh);
+        this.mesh.toggleMesh(this.config.mesh);
+        this.scene.add(this.mesh);
     }
 }
