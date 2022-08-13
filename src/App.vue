@@ -35,15 +35,15 @@ function onCanvasReady(calc : GraphCalculator) {
 
 a {
   &:link {
-    color: $palette-pink;
+    color: $palette-blue;
   }
 
   &:visited {
-    color: red;
+    color: $palette-pink;
   }
 
   &:active {
-    color: $palette-blue;
+    color: red;
   }
 }
 </style>
