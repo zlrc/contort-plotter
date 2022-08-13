@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, provide, ref } from 'vue';
-import { ChainNodeButton, SquareButton } from '@/components';
+import { AboutPopup, ChainNodeButton, RoundButton, SquareButton } from '@/components';
 import { GraphCalculator } from '@/scene';
 
 const props = defineProps<{
@@ -20,6 +20,9 @@ const showEquation = ref<boolean>(false);
 
 /** Whether or not the toolbox menu is open */
 const menuOpen = ref<boolean>(false);
+
+/** Whether or not the pop-up window is open */
+const popupVisible = ref<boolean>(false);
 
 /** The Modifier Chain: a metadata list of modifiers applied to the graph */
 const modChain = ref<Map<string, ModData>>(new Map());
@@ -101,6 +104,8 @@ function onNodeClick(id : string) {
 <!---->
 
 <template>
+    <AboutPopup :show="popupVisible" @close="popupVisible = false" />
+    <RoundButton id="showPopupButton" size="4rem" fill-color="none" @click="popupVisible = true">?</RoundButton>
     <div id="equation" v-if="showEquation">f(x, y) = {{props.scene.currentExpr}}</div>
 
     <div id="Toolbox__container">
@@ -138,6 +143,22 @@ function onNodeClick(id : string) {
     font-weight: normal;
     position: absolute;
     margin: 0.25rem 0.5rem;
+}
+
+#showPopupButton {
+    position: fixed;
+    font-size: calc($font-size-global + 1rem);
+    margin: 1.5rem;
+    right: 0;
+    top: 0;
+
+    @media (hover: hover) {
+        opacity: 25%;
+        transition: opacity 0.25s;
+        &:hover {
+            opacity: 100%;
+        }
+    }
 }
 
 #Toolbox__container {

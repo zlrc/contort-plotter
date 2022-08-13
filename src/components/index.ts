@@ -1,3 +1,4 @@
+export {default as AboutPopup} from './AboutPopup.vue';
 export {default as AppCanvas} from './AppCanvas.vue';
 export {default as AppGUI} from './AppGUI.vue';
 export {default as AxisToggleButton} from './AxisToggleButton.vue';
