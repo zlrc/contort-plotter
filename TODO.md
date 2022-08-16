@@ -4,7 +4,7 @@
     - [x] Create a global Sass variables file
 
 - [x] Working expandable GUI framework
-- [ ] GUI Components
+- [x] GUI Components
     - [x] Toolbox menu
         - [x] Page navigation
         - [x] "Open Menu" Button 
@@ -16,24 +16,26 @@
         - [x] Button Icons
     - [x] Custom header text prop for ToolboxSection components
     - [x] Toggle Switch Button
-    - [ ] Text Input Box
+    - [x] Text Input Box
+    - [x] Axis toggle button & Icon
 - [x] Working modifier chain system
     - [x] Add
     - [x] Edit
     - [x] Delete
-- [ ] Working graph modifiers:
-    - [ ] Parabola
-    - [ ] Wave
-    - [ ] Step function
-    - [ ] Custom expression
+- [x] Working graph modifiers:
+    - [x] Parabola
+    - [x] Wave
+    - [x] Step function
+    - [x] Custom expression
 - [x] ~~Fixed~~ Orthographic View that is enabled by default
-- [ ] Default camera positioning from the top corner (instead of from the side)
+- [x] Default camera positioning from the top corner (instead of from the side)
 - [x] Advanced config menu
-- [ ] Configurable hard limits on things like zoom, modifiers, domain/range, etc.
-- [ ] Mouse-hover effects for all button & input components
+- [x] Configurable hard limits on things like zoom, modifiers, domain/range, etc.
+- [x] Mouse-hover effects for all button & input components
+- [x] Links + Quick pop-up info window
 
 ## Stretch Goals
-- [ ] Add screen reader labels
+- [ ] Presets
 - [ ] Timer modifier
 - [ ] Ability to change modifier order
 - [ ] Optimize updates by pre-processing modifiers that come before and after the currently selected one
@@ -43,3 +45,10 @@
 - [ ] Support for Parametric Functions
 - [ ] Alternative mesh outline method
 - [ ] Support for seamlessly switching to perspective view
+- [ ] Support for using g(x, y) instead of {expr} in custom expression modifier
+- [ ] Latex rendering of equations (only in places where it doesn't update often i.e. custom expression modifier)
+- [ ] Axis labels & ticks
+- [ ] 3D Model Export
+- [ ] Scene Color Palette Options
+- [ ] Unit Tests
+- [ ] End-to-End Tests
