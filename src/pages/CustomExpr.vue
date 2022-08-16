@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import * as math from "mathjs";
 import { ref } from 'vue';
 import { ModifierPage, TextInputBox, ToolboxSection } from '@/components';
+import { evaluate, simplify } from '@/utils/parser';
 
 const color = "#FAF3EB";
 
@@ -16,7 +16,7 @@ function process(expr: string, settings: ModSettings) {
     try {
         if (!result)
             throw new Error();
-        math.evaluate(result, {x:0.1,y:0.1,t:0.1});
+        evaluate(result, {x:0.1,y:0.1,t:0.1});
         return result;
     } catch {
         return expr;
@@ -35,7 +35,7 @@ function process(expr: string, settings: ModSettings) {
 
         <ToolboxSection>
             <div class="expr-text">
-                {expr} = {{math.simplify(settings.expr as string).toString()}}
+                {expr} = {{simplify(settings.expr as string).toString()}}
             </div>
         </ToolboxSection>
     </ModifierPage>
