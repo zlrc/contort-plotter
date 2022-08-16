@@ -10,11 +10,11 @@ const settings = ref<ModSettings>({
 });
 
 function process(expr: string, settings: ModSettings) {
-    if (expr == "0") // using ''==' here to check the numerical value, as well
+    if (expr == "0") // using '==' here to check the numerical value, as well
         expr = "x";
     const amp = settings.amplitude === 1 ? '' : `${settings.amplitude}`;
-    const per = settings.period === 1 ? '' : `${settings.period}`;
-    return `${amp}cos(${per}(${expr})) + 1`;
+    const inside = settings.period === 1 ? `${expr}` : `${settings.period}(${expr})`;
+    return `${amp}cos(${inside})`;
 }
 </script>
 
