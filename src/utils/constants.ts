@@ -4,8 +4,9 @@ export const menu = {
         {name: "Parabola", icon: "parabola"},
         {name: "Cubic", icon: "cubic"},
         {name: "Absolute", icon: "abs"},
-        {name: "Wave", icon: "wave"},
         {name: "Step", icon: "step"},
+        {name: "Wave", icon: "wave"},
+        {name: "Wave2", icon: "wave2"}
     ],
     "Advanced": [
         {name: "CustomExpr", icon: "custom"},
