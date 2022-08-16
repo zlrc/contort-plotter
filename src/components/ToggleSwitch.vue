@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onUpdated, ref } from 'vue';
-
 const props = defineProps<{
     /** 
      * Fill color to display while the switch is activated.
@@ -18,11 +16,10 @@ const emit = defineEmits<{
 }>();
 
 const { color = "black", size = "4rem" } = props;
-const modelValue = props.modelValue ? ref(props.modelValue) : ref(false);
 
-onUpdated(() => {
-    emit('update:modelValue', modelValue.value as boolean);
-});
+function onChange(e : Event) {
+    emit('update:modelValue', (e.target as HTMLInputElement).checked);
+}
 </script>
 
 <!---->
@@ -30,7 +27,7 @@ onUpdated(() => {
 <template>
     <label class="switch">
         <slot />
-        <input type="checkbox" v-model="modelValue"/>
+        <input type="checkbox" :checked="modelValue" @change="onChange"/>
         <span class="slider" />
     </label>
 </template>
