@@ -25,6 +25,7 @@ $border-radius-pill: 2rem;
 $border-width-global: 0.25rem;
 $height-tray: 5rem;
 $height-toolbox-body: 20rem;
+$transition-padding-button: padding 0.025s ease-in-out;
 
 /* Mixins */
 @mixin stripe-background ($base-color, $dark-color: null) {

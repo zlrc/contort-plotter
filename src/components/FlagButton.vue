@@ -40,6 +40,8 @@ onMounted(() => {
 <!---->
 
 <style scoped lang="scss">
+    $transition-padding: $transition-padding-button;
+    
     .button {
         position: relative;
         height: 100%;
@@ -48,6 +50,14 @@ onMounted(() => {
 
         svg {
             height: 100%;
+        }
+
+        &:hover .button__icon, &:focus .button__icon {
+            padding: 0.15rem;
+        }
+        
+        &:active .button__icon {
+            padding: 0.5rem;
         }
     }
 
@@ -58,6 +68,7 @@ onMounted(() => {
         margin: 0 2.5rem;
         padding: 0.25rem;
         pointer-events: none;
+        transition: $transition-padding;
     }
 
     #path-bg {

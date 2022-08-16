@@ -29,6 +29,8 @@ const outline = props.outlineColor ? props.outlineColor : "black";
 <!---->
 
 <style scoped lang="scss">
+    $transition-padding: $transition-padding-button;
+
     .button {
         height: v-bind(size);
         width: v-bind(size);
@@ -38,6 +40,11 @@ const outline = props.outlineColor ? props.outlineColor : "black";
         
         background: v-bind(color);
         border: solid 0.25rem v-bind(outline);
+
+        transition: $transition-padding;
+        &:active, &:focus {
+            padding: 0.25rem;
+        }
     }
 
     .button__icon {

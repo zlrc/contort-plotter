@@ -191,7 +191,15 @@ function onNodeClick(id : string) {
         
         border-width: $border-width-global;
         background: $color-menu-button-bg;
-        //box-shadow: -2px 4px 10px 0 $color-border-global;
+
+        transition: $transition-padding-button;
+        &:focus, &:hover {
+            padding: 0.45rem;
+        }
+
+        &:active {
+            padding: 0.75rem;
+        }
     }
 }
 
