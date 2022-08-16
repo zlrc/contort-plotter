@@ -52,3 +52,55 @@
 - [ ] Scene Color Palette Options
 - [ ] Unit Tests
 - [ ] End-to-End Tests
+
+# Accessibility Goals
+- [ ] Issues on iOS Safari:
+    - [ ] Missing Grid Box
+    - [ ] Being able to overscroll the entire page
+    - [ ] Being able to zoom where you aren't supposed to
+- [ ] Missing alt-text / screen reader labels for:
+    - [ ] AppCanvas (with an up-to-date label for the displayed equation)
+    - [X] '?' Button
+    - [X] Button that opens the menu
+    - [X] Main Menu buttons
+    - [X] Back button
+    - [X] Delete button
+    - [X] Axis Toggle button
+    - [X] Modifier chain buttons
+    - [ ] Config Menu
+        - [ ] Polygon Count Slider
+        - [ ] Grid Division Slider
+        - [ ] Surface Size Slider
+    - [X] About Pop-up
+        - [X] "X" (close) button
+        - [X] demo1.gif
+        - [X] demo2.gif
+        - [X] demo3.gif
+    - [ ] Specific Modifier Pages:
+        - [ ] Identity
+            - [ ] Slider
+        - [ ] Parabola
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Cubic
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Absolute Value
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Step
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Wave
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Wave2
+            - [ ] Slider 1
+            - [ ] Slider 2
+        - [ ] Sign
+            - [ ] Slider
+        - [ ] Transform
+            - [X] Reflect (Toggle Switch)
+            - [ ] Slider
+        - [ ] Custom Expression
+            - [X] Text Input Field

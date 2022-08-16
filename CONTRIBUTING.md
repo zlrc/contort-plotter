@@ -1,9 +1,11 @@
+**PLEASE BE AWARE THAT AT THIS TIME, PULL REQUESTS MIGHT NOT BE ACCEPTED UNTIL AFTER SEPT. 15TH, 2022, OR WHEN THE REVIEW PERIOD FOR [SOME2](https://www.youtube.com/watch?v=hZuYICAEN9Y) HAS ENDED**
+
 ## Commands
 
 | Command           | Action                                       |
 |:----------------  |:-------------------------------------------- |
 | `npm install`     | Installs dependencies                        |
-| `npm start`       | Starts local dev server at `localhost:3000`  |
+| `npm start`       | Starts local dev server on `localhost`  |
 | `npm run build`   | Builds the production site to `./dist`       |
 | `npm run preview` | Previews the production build locally, before deploying |
 
