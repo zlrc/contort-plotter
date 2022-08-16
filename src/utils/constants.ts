@@ -8,6 +8,9 @@ export const menu = {
         {name: "Wave", icon: "wave"},
         {name: "Wave2", icon: "wave2"}
     ],
+    "Effects": [
+        {name: "Transform", icon: "trans"}
+    ],
     "Advanced": [
         {name: "CustomExpr", icon: "custom"},
         {name: "Config", icon: "ellipsis"}
