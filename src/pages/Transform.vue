@@ -23,8 +23,8 @@ function process(expr: string, settings: ModSettings) {
 <template>
     <ModifierPage name="Transform" :color="color" :process-fn="process" icon="trans" v-model="settings">
         <ToolboxSection class="section">
-            <ToggleSwitch :color="color" v-model="(settings.reflect as boolean)" >
-                <SVGIcon class="toggle-icon" name="reflect" />
+            <ToggleSwitch :color="color" v-model="(settings.reflect as boolean)" aria-label="Toggle Reflect over X/Y plane" >
+                <SVGIcon class="toggle-icon" name="reflect" aria-hidden="true" />
             </ToggleSwitch>
         </ToolboxSection> 
         <Slider :track-color="color" :min="-1" :max="1" :step="0.01" v-model="(settings.shift as number)"

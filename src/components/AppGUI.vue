@@ -105,13 +105,13 @@ function onNodeClick(id : string) {
 
 <template>
     <AboutPopup :show="popupVisible" @close="popupVisible = false" />
-    <RoundButton id="showPopupButton" size="4rem" fill-color="none" @click="popupVisible = true">?</RoundButton>
+    <RoundButton id="showPopupButton" aria-label="Show About Window." size="4rem" fill-color="none" @click="popupVisible = true">?</RoundButton>
     <div id="equation" v-if="showEquation">f(x, y) = {{props.scene.currentExpr}}</div>
 
     <div id="Toolbox__container">
 
         <div id="Toolbox__tray">
-            <SquareButton id="menu-button" icon="settings" @click.stop="onMenuButtonClick" />
+            <SquareButton id="menu-button" icon="settings" aria-label="Toggle menu." @click.stop="onMenuButtonClick" />
             <div id="modifier-chain__container" ref="chainContainer">
                 <div id="modifier-chain__flexwrap">
                     <ChainNodeButton 
@@ -120,6 +120,7 @@ function onNodeClick(id : string) {
                         :id="id"
                         :fill-color="modChain.get(id)?.color"
                         :icon="modChain.get(id)?.icon"
+                        :aria-label="`Edit ${modChain.get(id)?.pageName} modifier.`"
                         @click="onNodeClick"
                     />
                 </div>

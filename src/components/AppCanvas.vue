@@ -58,7 +58,7 @@ function onResize() {
 
 <template>
     <div ref="containerRef" id="canvas-container">
-        <canvas ref="canvasRef" id="main-canvas" />
+        <canvas ref="canvasRef" id="main-canvas" aria-label="Surface plot for f(x,y)" />
     </div>
 </template>
 

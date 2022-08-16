@@ -94,7 +94,7 @@ const sections = [
 
 <template>
     <ToolboxSection>
-        <RoundButton size="4rem" fill-color="none" icon="back" @click="emit('redirect','MainPage')" />
+        <RoundButton size="4rem" fill-color="none" icon="back" aria-label="Back to Menu" @click="emit('redirect','MainPage')" />
     </ToolboxSection>
     
     <ToolboxSection class="Config__section" v-for="section in sections" :title="section.title">

@@ -26,6 +26,7 @@ function onClick(dest : string) {
                 :key="page.name"
                 :to="page.name"
                 :icon="page.icon"
+                :aria-label="page.name"
                 @click="onClick"
             />
         </ButtonGrid>

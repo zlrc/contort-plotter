@@ -30,7 +30,7 @@ function process(expr: string, settings: ModSettings) {
     <ModifierPage name="CustomExpr" :color="color" :process-fn="process" icon="custom" v-model="settings">
         <ToolboxSection class="input-box__container">
             <p class="func-text">f(x, y) = </p>
-            <TextInputBox class="input-box" v-model="(settings.text as string)" />
+            <TextInputBox class="input-box" v-model="(settings.text as string)" aria-label="Enter an expression for f(x,y)." />
         </ToolboxSection>
 
         <ToolboxSection>

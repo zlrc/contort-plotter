@@ -18,8 +18,8 @@ import { PopupOverlay } from '@/components';
             a chained series of "modifiers" to a single plane.
         </p>
         <div class="demo-container">
-            <img src="/images/demo1.gif" />
-            <img src="/images/demo2.gif" />
+            <img src="/images/demo1.gif" alt="A demonstration showing the surface plot for x-squared plus y-squared." />
+            <img src="/images/demo2.gif" alt="A slowly rotating surface plot of a hollow box with no top." />
         </div>
         <p>
             On the surface, it probably looks more like a 3D modeling tool. Granted, it kind of is, but each vertex
@@ -29,7 +29,7 @@ import { PopupOverlay } from '@/components';
             the menu.
         </p>
         <div class="demo-container">
-            <img src="/images/demo3.gif" />
+            <img src="/images/demo3.gif" alt="A demonstration of options found inside the configuration menu." />
         </div>
         <p>
             This project was designed with a few different use cases and knowledge levels in mind, so there are

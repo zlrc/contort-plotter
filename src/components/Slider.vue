@@ -41,13 +41,13 @@ const {
 
 <template>
     <div id="Slider__container">
-        <SVGIcon v-if="props.iconLeft" :name="props.iconLeft" :color="thumbColor" />
+        <SVGIcon v-if="props.iconLeft" :name="props.iconLeft" :color="thumbColor" aria-hidden="true"/>
         <div class="Slider__tick start" />
         <input type="range" :min="min" :max="max" :value="modelValue" :step="step"
             @input="emit('update:modelValue', Number(($event.target as HTMLInputElement).value))" 
         />
         <div class="Slider__tick end" />
-        <SVGIcon v-if="props.iconRight" :name="props.iconRight" :color="thumbColor" />
+        <SVGIcon v-if="props.iconRight" :name="props.iconRight" :color="thumbColor" aria-hidden="true"/>
     </div>
 </template>
 

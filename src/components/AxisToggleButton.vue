@@ -28,6 +28,7 @@ const { color = "white" } = props;
         fill-color="none"
         icon="axis"
         :icon-color="color"
+        aria-label="Toggle axis selection."
         @click="onClick" 
     />
 </template>

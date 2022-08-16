@@ -101,8 +101,8 @@ onMounted(() => {
 <template>
     <ToolboxSection>
         <div class="header__part left">
-            <RoundButton size="4rem" fill-color="none" icon="back" @click="onBackClick" />
-            <RoundButton size="4rem" fill-color="none" icon="delete" @click="onDeleteClick" />
+            <RoundButton size="4rem" fill-color="none" icon="back" aria-label="Back to Menu" @click="onBackClick" />
+            <RoundButton size="4rem" fill-color="none" icon="delete" aria-label="Delete" @click="onDeleteClick" />
         </div>
         <div class="header__part right">
             <slot name="header" />

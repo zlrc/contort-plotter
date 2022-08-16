@@ -30,8 +30,8 @@ onMounted(() => {
 
 <template>
     <button class="button" @contextmenu.prevent="">
-        <SVGIcon class="button__icon" v-if="props.icon && iconColor" :name="props.icon" :color="iconColor" />
-        <svg viewBox="0 0 140 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <SVGIcon class="button__icon" v-if="props.icon && iconColor" :name="props.icon" :color="iconColor" aria-hidden="true" />
+        <svg viewBox="0 0 140 69" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path ref="pathBG" id="path-bg" d="M1 68V1H103.086L136.586 34.5L103.086 68H34.5H1Z" />
         </svg>
     </button>

@@ -21,7 +21,7 @@ const outline = props.outlineColor ? props.outlineColor : "black";
 
 <template>
     <button class="button" @contextmenu.prevent="">
-        <SVGIcon class="button__icon" v-if="props.icon" :name="props.icon" />
+        <SVGIcon class="button__icon" v-if="props.icon" :name="props.icon" aria-hidden="true" />
         <slot/>
     </button>
 </template>

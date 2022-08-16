@@ -38,7 +38,7 @@ watch(() => props.show, () => isVisible.value = props.show);
                     <div class="window__contents">
                         <div class="window__titlebar">
                             <h1><slot name="title"/></h1>
-                            <RoundButton size="3rem" fill-color="none" @click="emit('close')">X</RoundButton>
+                            <RoundButton aria-label="Close" size="3rem" fill-color="none" @click="emit('close')">X</RoundButton>
                         </div>
                         <div class="window__body">
                             <slot />
