@@ -7,7 +7,7 @@ import { PopupOverlay } from '@/components';
 <template>
     <PopupOverlay>
         <template #title>About</template>
-        <img id="logo" src="images/logo.svg" alt="A logo with rounded, stylized letters that spell 'Contort'" />
+        <img id="logo" src="/images/logo.svg" alt="A logo with rounded, stylized letters that spell 'Contort'" />
         <h2>What is this?</h2>
         <p>
             Contort (not to be confused with "Contour") started out as a self-imposed challenge to make a 
@@ -18,8 +18,8 @@ import { PopupOverlay } from '@/components';
             a chained series of "modifiers" to a single plane.
         </p>
         <div class="demo-container">
-            <img src="images/demo1.gif" />
-            <img src="images/demo2.gif" />
+            <img src="/images/demo1.gif" />
+            <img src="/images/demo2.gif" />
         </div>
         <p>
             On the surface, it probably looks more like a 3D modeling tool. Granted, it kind of is, but each vertex
@@ -29,7 +29,7 @@ import { PopupOverlay } from '@/components';
             the menu.
         </p>
         <div class="demo-container">
-            <img src="images/demo3.gif" />
+            <img src="/images/demo3.gif" />
         </div>
         <p>
             This project was designed with a few different use cases and knowledge levels in mind, so there are
