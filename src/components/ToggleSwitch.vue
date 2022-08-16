@@ -113,7 +113,7 @@ $transition: 0.12s ease-out;
 input[type="checkbox"] {
     // Hide the default appearance first
     appearance: none;
-    visibility: hidden;
+    opacity: 0;
 
     /* Focused */
     &:focus + .slider {
