@@ -1,40 +1,5 @@
-## Goals for Public Release
-- [x] Refactoring
-    - [x] Extract individual components from AppGUI.vue into their own separate files
-    - [x] Create a global Sass variables file
-
-- [x] Working expandable GUI framework
-- [x] GUI Components
-    - [x] Toolbox menu
-        - [x] Page navigation
-        - [x] "Open Menu" Button 
-        - [x] Modifier Icon Button
-    - [x] Modifier Chain Button
-    - [x] Final equation displayed somewhere
-    - [x] SVG Icons that are dynamically loaded from file
-        - [x] Slider Icons
-        - [x] Button Icons
-    - [x] Custom header text prop for ToolboxSection components
-    - [x] Toggle Switch Button
-    - [x] Text Input Box
-    - [x] Axis toggle button & Icon
-- [x] Working modifier chain system
-    - [x] Add
-    - [x] Edit
-    - [x] Delete
-- [x] Working graph modifiers:
-    - [x] Parabola
-    - [x] Wave
-    - [x] Step function
-    - [x] Custom expression
-- [x] ~~Fixed~~ Orthographic View that is enabled by default
-- [x] Default camera positioning from the top corner (instead of from the side)
-- [x] Advanced config menu
-- [x] Configurable hard limits on things like zoom, modifiers, domain/range, etc.
-- [x] Mouse-hover effects for all button & input components
-- [x] Links + Quick pop-up info window
-
-## Stretch Goals
+## Post-Release Stretch Goals
+- [ ] A vertical menu interface for desktop web browsers
 - [ ] Presets
 - [ ] Timer modifier
 - [ ] Ability to change modifier order
@@ -53,7 +18,7 @@
 - [ ] Unit Tests
 - [ ] End-to-End Tests
 
-# Accessibility Goals
+## Accessibility Goals
 - [ ] Issues on iOS Safari:
     - [ ] Missing Grid Box
     - [ ] Being able to overscroll the entire page
