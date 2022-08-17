@@ -1,17 +1,22 @@
-<center>
-<img src="public/images/logo.svg" alt="Contort Logo" width="800px" />
+<p align="center">
+  <img src="public/images/logo.svg" alt="Contort Logo" width="800px" />
+</p>
+<h3 align="center">  
+  <a href="https://contort-plotter.pages.dev/">Try It Out</a>
+</h3>
 
-### [Try It Out](https://contort-plotter.pages.dev/)
 ---
+
+<p align="center">
 Contort is a 3D surface plotter (or 3D graphing calculator, if you prefer) that attempts to abstract math expressions into a colorful chain of "modifiers" to deliver a fun, game-ified learning experience.
-</center>
+</p>
 
 ---
 
-<p float="left" align="middle">
-  <img align="top" src="public/images/demo1.gif" width="32%" />
-  <img align="top" src="public/images/demo2.gif" width="32%" /> 
-  <img align="top" src="public/images/demo3.gif" width="32%" />
+<p float="left" align="middle" style="display: flex; flex-wrap: wrap;">
+  <img align="top" src="public/images/demo1.gif" width="265.6px" alt="A demonstration showing the surface plot for x-squared plus y-squared." />
+  <img align="top" src="public/images/demo2.gif" width="265.6px" alt="A slowly rotating surface plot of a hollow box with no top." /> 
+  <img align="top" src="public/images/demo3.gif" width="265.6px" alt="A demonstration of options found inside the configuration menu." />
 </p>
 
 ---
@@ -26,9 +31,9 @@ If you would like to use any 3D visuals that you create with the Contort website
 
 \* Please refer to the additional licenses inside the corresponding folders:
 
-- `src/utils` (licensed under GPLv3)
+- <a href="/src/utils">`src/utils`</a> (licensed under GPLv3)
 
-- `src/icons` (contains CC Licenses)
+- <a href="/src/icons">`src/icons`</a> (contains CC Licenses)
 
 
 Supporting this Project
