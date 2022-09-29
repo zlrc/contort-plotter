@@ -1,5 +1,3 @@
-> **NOTE**: THIS PROJECT IS A SUBMISSION TO THE [SUMMER OF MATH EXPOSITION 2](https://www.youtube.com/watch?v=hZuYICAEN9Y). PLEASE BE AWARE THAT WHILE CONTRIBUTIONS ARE WELCOME, CERTAIN PULL REQUESTS MIGHT NOT BE ACCEPTED UNTIL AFTER **SEPT. 15TH, 2022**, OR WHEN THE REVIEW PERIOD FOR SOME2 HAS ENDED.
-
 More information may be added at a later date, but in general please follow the provided guidelines and be sure to rebase / squash your commits before requesting approval on your changes.
 
 ## Commands

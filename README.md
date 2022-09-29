@@ -8,7 +8,7 @@
 ---
 
 <p align="center">
-Contort is a 3D surface plotter (or 3D graphing calculator, if you prefer) that attempts to abstract math expressions into a colorful chain of "modifiers" to deliver a fun, game-ified learning experience.
+Contort is a 3D surface plotter (or 3D graphing calculator, if you prefer) that attempts to abstract math expressions into a colorful chain of "modifiers" to deliver a fun, gamified learning experience.
 </p>
 
 ---
@@ -39,8 +39,8 @@ If you would like to use any 3D visuals that you create with the Contort website
 Supporting this Project
 ---
 
-### Reporting Bugs, Questions, & Issues
-Please use the [github issue tracker](https://github.com/zlrc/contort-plotter/issues). Do note that this project is a submission to the second annual [Summer of Math Exposition](https://www.youtube.com/watch?v=hZuYICAEN9Y) and certain things might not be addressed until the review process finishes on Sept. 15th, 2022 (at the earliest).
+### Reporting Bugs, Questions, Suggestions, & Issues
+Please use the [github issue tracker](https://github.com/zlrc/contort-plotter/issues). Be sure to also check [TODO.md](TODO.md) to see if there are plans already to address your issue.
 
 ### Contributing
 Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -51,4 +51,4 @@ Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A75O6SL)
 
 ---
-Built with [Vue3](https://vuejs.org/) + [Vite](https://vitejs.dev/)
+Built with [Vue3](https://vuejs.org/) + [Vite](https://vitejs.dev/), [THREE.js](https://github.com/mrdoob/three.js/), and [Math.js](https://github.com/josdejong/mathjs)
