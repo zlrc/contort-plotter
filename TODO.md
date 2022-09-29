@@ -17,6 +17,7 @@
 - [ ] Scene Color Palette Options
 - [ ] Unit Tests
 - [ ] End-to-End Tests
+- [ ] Plotting multiple surfaces at the same time
 
 ## Accessibility Goals
 - [ ] Issues on iOS Safari:
