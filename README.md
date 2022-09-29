@@ -2,7 +2,7 @@
   <img src="public/images/logo.svg" alt="Contort Logo" width="800px" />
 </p>
 <h3 align="center">  
-  <a href="https://contort-plotter.pages.dev/">Try It Out</a>
+  <a href="https://contort.thebunny.net/">Try It Out</a>
 </h3>
 
 ---
