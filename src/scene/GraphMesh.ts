@@ -10,6 +10,7 @@ import {
     Object3D, 
     Vector3 
 } from "three";
+import { OBJExporter } from "three/examples/jsm/exporters/OBJExporter";
 
 import { YELLOW as COLORS } from "./palettes";
 
@@ -172,6 +173,17 @@ export class GraphMesh extends Object3D {
                 }
             }
         }
+    }
+
+    /** Returns the mesh geometry in .obj format */
+    asOBJ() : string {
+        // Generate the mesh without the outline or wireframe
+        const geom = this.asTriangleGeometry();
+        const mesh = new Mesh(geom);
+
+        // Convert to OBJ
+        const exporter = new OBJExporter();
+        return exporter.parse(mesh);
     }
 
     /**

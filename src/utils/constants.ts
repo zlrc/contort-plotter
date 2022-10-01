@@ -14,6 +14,7 @@ export const menu = {
     ],
     "Advanced": [
         {name: "CustomExpr", icon: "custom"},
+        {name: "Export", icon: "save"},
         {name: "Config", icon: "ellipsis"}
     ]
 }

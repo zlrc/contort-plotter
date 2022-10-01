@@ -69,7 +69,7 @@ function onCoffeeButtonClick() {
         height: 2rem;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 599px) {
         margin: 1rem 0;
     }
 }

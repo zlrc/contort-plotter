@@ -134,6 +134,24 @@ export class GraphCalculator {
         this.currentExpr = expr;
     }
 
+    /**
+     * Exports the graph mesh to OBJ format.
+     * @param filename name of the file (without the .obj suffix)
+     */
+    exportMeshOBJ(filename : string) {
+        const data = this.mesh.asOBJ();
+
+        const el = document.createElement('a');
+        el.setAttribute('href', 'data:model/obj;charset=utf-8,' + 
+            encodeURIComponent(data));
+        el.setAttribute('download', `${filename}.obj`);
+        el.style.display = "none";
+
+        document.body.appendChild(el);
+        el.click();
+        document.body.removeChild(el);
+    }
+
     // ------------------------------------------ //
     // Helper Functions for Configuring the Graph //
     // ------------------------------------------ //

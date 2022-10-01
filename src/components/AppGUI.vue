@@ -13,7 +13,7 @@ let imports: { [key: string]: Object } = {};
 
 
 /** Pages that don't need to be uniquely instanced (typically non-modifiers) */
-const singletonPages = ["MainPage", "Config"];
+const singletonPages = ["MainPage", "Config", "Export"];
 
 /** Whether or not to display the current equation */
 const showEquation = ref<boolean>(false);

@@ -13,7 +13,7 @@
 - [ ] Support for using g(x, y) instead of {expr} in custom expression modifier
 - [ ] Latex rendering of equations (only in places where it doesn't update often i.e. custom expression modifier)
 - [ ] Axis labels & ticks
-- [ ] 3D Model Export
+- [X] 3D Model Export
 - [ ] Scene Color Palette Options
 - [ ] Unit Tests
 - [ ] End-to-End Tests
