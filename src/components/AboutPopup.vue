@@ -53,13 +53,13 @@ import { PopupOverlay } from '@/components';
         </p>
         &nbsp;
         <template #footer>
-            <center>
+            <div style="text-align: center;">
                 © 2022 <a href="https://github.com/zlrc" target="_blank" rel="noopener noreferrer">Mike K.</a><br/>
                 [<a href="https://github.com/zlrc/contort-plotter" target="_blank" rel="noopener">Source Code</a>] 
                 [<a href="https://fonts.google.com/share?selection.family=Gugi%7CNunito:ital,wght@0,400;0,700;1,400;1,700"
                     target="_blank" rel="noopener noreferrer">Fonts</a>] 
                 [<a href="https://github.com/zlrc/contort-plotter/issues" target="_blank" rel="noopener" style="white-space: nowrap">Issue Tracker</a>]
-            </center>
+            </div>
         </template>
     </PopupOverlay>
 </template>
